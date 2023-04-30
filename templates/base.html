@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>{% block title %} {% endblock %}</title>
+    
+</head>
+<body>
+    <!-- NavBar -->
+    <header>
+        <div class="nav container">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <a href="#" class="logo">Car<span>Point</span></a>            
+                <ul class="navbar">
+                    <li><a class="active" href="#home">HEllow</a></li>
+                    <li><a href="#price">Price</a></li>
+                    <li><a href="#home">Model</a></li>
+                    <li><a href="#home">Statitics</a></li>
+                    <li><a href="#home">About</a></li>
+                </ul>
+        </div>
+    </header>
+    {% block body %}
+    {% endblock %}
+    
+   
+    
+</body>
+{% block script %}
+{% endblock %}
+</html>

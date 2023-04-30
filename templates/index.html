@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}
+CarPoint
+{% endblock %}
+
+{% block body %}
+<section class="home" id="home">
+    <div class="home-text">
+        <h1>We Have Everything <br> Your <span>Car</span>Need</h1>
+        <p>Lorem ipsum dolor sit amet consectetur<br> adipisicing elit. Expedita eligendi </p>
+        <!-- Home Button -->
+        <a href="#" class="btn">Discover Now</a>
+    </div>
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,224L48,208C96,192,192,160,288,128C384,96,480,64,576,74.7C672,85,768,139,864,149.3C960,160,1056,128,1152,96C1248,64,1344,32,1392,16L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> -->
+</section>
+<section class="price" id="price">
+    <div class="heading">
+        <span>All Prices</span>
+        <h2>Know Price Of Car</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    </div>
+    <!-- Price section two Option -->
+    <div class="car-container">
+        <div class="box" onmouseover="change(1,'img1','tit1','a1','box-content1')" onmouseout="change(2,'img1','tit1','a1','box-content1')">
+            <div class="boxContent" id="box-content1">
+                <img src="../static/buy-img.png" id="img1" alt="Car Buy">
+                <h1 id="tit1">Buying Price</h1>
+                <a href="#" id="a1" hidden>Know Price <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+        </div>
+        <div class="box" onmouseover="change(1,'img2','tit2','a2','box-content2')" onmouseout="change(2,'img2','tit2','a2','box-content2')">
+            <div class="boxContent" id="box-content2">
+                <img src="../static/car-sell.png" id="img2" alt="Car sell">
+                <h1 id="tit2">Selling Price</h1>
+                <a href="#" id="a2" hidden>Know Price <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+        </div>
+
+        <!-- <div class="box" onmouseover="change(1,'img2','tit2','a2','box-content2')" onmouseout="change(2,'img2','tit2','a2','box-content2')">
+            <div class="boxContent" id="'box-content2'">
+                <img src="../static/css/buy-img.png" id="img2" alt="Car sell" >
+                <h1 id="tit2">Buying Price</h1>
+                <a href="#" id="a2" hidden>Know Price <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+        </div> -->
+    </div>
+</section>
+<section class="modal">
+
+</section>
+<section class="stat">
+
+</section>
+<section class="about">
+
+</section>
+<section class="footer">
+
+</section>
+
+{% endblock %}
+{% block script %}
+<script>
+ function change(a,img,tit,link,cont)
+ {
+    if(a==1)
+    {document.getElementById(img).style.display='none'
+    document.getElementById(tit).style.display='none'
+    document.getElementById(link).style.display='inline'
+    document.getElementById(cont).style.height='350px'
+   }
+   else
+   {
+    document.getElementById(img).style.display='inline'
+    document.getElementById(tit).style.display='inline'
+    document.getElementById(link).style.display='none'
+    document.getElementById(cont).style.height='auto'
+   }
+
+ }
+</script>
+
+{% endblock %}
