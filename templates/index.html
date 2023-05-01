@@ -45,18 +45,64 @@ CarPoint
         </div> -->
     </div>
 </section>
-<section class="modal">
+<!-- Model Section -->
+<section class="model" id="model">
+    <div class="model-heading">        
+        <h2>Know Price Of Car</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+    </div>
+    <div class="model-container">
+    
+        <!-- model 1 -->
+        <div class="box">
+            <div class="icon">01</div>
+            <div class="content">
+                <h3>Service Name</h3>
+                <p>Lorem, ipsum dolor sit amet
+                     consectetur adipisicing elit.
+                      Reiciendis impedit architecto numquam
+                       quae error dicta dolorem. Exercitationem 
+                </p>
+                <a href="#">Know Model</a>
+            </div>
+        </div>
+    
+        <!--model 2 -->
+        <div class="box">
+            <div class="icon">02</div>
+            <div class="content">
+                <h3>Service Name</h3>
+                <p>Lorem, ipsum dolor sit amet
+                     consectetur adipisicing elit.
+                      Reiciendis impedit architecto numquam
+                       quae error dicta dolorem. Exercitationem 
+                </p>
+                <a href="#">Know Model</a>
+            </div>
+        </div>
+    
+        <!-- model 3 -->
+        <div class="box">
+            <div class="icon">03</div>
+            <div class="content">
+                <h3>Service Name</h3>
+                <p>Lorem, ipsum dolor sit amet
+                     consectetur adipisicing elit.
+                      Reiciendis impedit architecto numquam
+                       quae error dicta dolorem. Exercitationem 
+                </p>
+                <a href="#">Know Model</a>
+            </div>
+        </div>
+    
+    </div>
+    
+    </section>
+   <!-- Visualization section  -->
+    <section class="stat">
 
-</section>
-<section class="stat">
+    </section>
 
-</section>
-<section class="about">
-
-</section>
-<section class="footer">
-
-</section>
 
 {% endblock %}
 {% block script %}
@@ -78,6 +124,14 @@ CarPoint
    }
 
  }
+ let header =document.querySelector('header');
+    window.addEventListener('scroll',()=>{
+        header.classList.toggle('logo_bg_0',window.scrollY > 525);
+        header.classList.toggle('logo_bg_1',window.scrollY > 1270);
+        header.classList.toggle('shadow0',window.scrollY > 0);
+        header.classList.toggle('link_color_0',window.scrollY > 140);
+        header.classList.toggle('link_color_1',window.scrollY > 820);
+    });
 </script>
 
 {% endblock %}
