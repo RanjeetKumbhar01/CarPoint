@@ -316,7 +316,3 @@ header.link_color_1 .navbar a {
     color: var(--main-color);
 }
 
-.stat{
-    height: 500px;
-    background: var(--bg-color);
-}

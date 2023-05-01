@@ -99,14 +99,66 @@ CarPoint
     
     </section>
    <!-- Visualization section  -->
-    <section class="stat">
+   
+   <section class="stat">
+    <div class="img-slider">
+        <div class="slide active">
+            <img src="../static/slider1.jpg">
+            <div class="info">
+                <h1>Slide 01</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quasi incidunt quibusdam reiciendis dolor iure corporis fuga vel odit delectus, molestias cupiditate consectetu</p>
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../static/slider1.jpg">
+            <div class="info">
+                <h1>Slide 02</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quasi incidunt quibusdam reiciendis dolor iure corporis fuga vel odit delectus, molestias cupiditate consectetu</p>
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../static/slider1.jpg">
+            <div class="info">
+                <h1>Slide 03</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quasi incidunt quibusdam reiciendis dolor iure corporis fuga vel odit delectus, molestias cupiditate consectetu</p>
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../static/slider1.jpg">
+            <div class="info">
+                <h1>Slide 04</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quasi incidunt quibusdam reiciendis dolor iure corporis fuga vel odit delectus, molestias cupiditate consectetu</p>
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../static/slider1.jpg">
+            <div class="info">
+                <h1>Slide 05</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quasi incidunt quibusdam reiciendis dolor iure corporis fuga vel odit delectus, molestias cupiditate consectetu</p>
+                <a href="#">Discover More</a>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="btn active"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+        </div>
+    </div>
+  
 
-    </section>
+</section>
 
 
 {% endblock %}
 {% block script %}
 <script>
+// Price color change
  function change(a,img,tit,link,cont)
  {
     if(a==1)
@@ -121,9 +173,10 @@ CarPoint
     document.getElementById(tit).style.display='inline'
     document.getElementById(link).style.display='none'
     document.getElementById(cont).style.height='auto'
-   }
-
+   }  
  }
+
+//  header dynamic color change
  let header =document.querySelector('header');
     window.addEventListener('scroll',()=>{
         header.classList.toggle('logo_bg_0',window.scrollY > 525);
@@ -132,6 +185,57 @@ CarPoint
         header.classList.toggle('link_color_0',window.scrollY > 140);
         header.classList.toggle('link_color_1',window.scrollY > 820);
     });
+
+
+// slider script
+
+var slide=document.querySelectorAll('.slide');
+    var btns=document.querySelectorAll('.btn');
+    let currentSlide=1;
+
+    var manualNav = function(manual){
+        slide.forEach((slide) => {
+          slide.classList.remove('active');
+          btns.forEach((btn) => {
+            btn.classList.remove('active');
+          });
+        });
+
+        slide[manual].classList.add('active');
+        btns[manual].classList.add('active');
+    }
+    btns.forEach((btn,i)=>{
+       btn.addEventListener("click",()=>{
+        manualNav(i);
+        currentSlide=i;
+       })
+    });
+
+
+    // autoplay
+    var repeat=function(activeClass){
+        let active=document.getElementsByClassName('active');
+        let i=1;
+        var repeater = () =>{
+            setTimeout(function(){
+                [...active].forEach((activeSlice)=>{
+                activeSlice.classList.remove('active');
+                });
+
+                slide[i].classList.add('active');
+                btns[i].classList.add('active');
+                i++;
+
+                if(slide.length == i)
+                {i=0;}
+                if(i >=slide.length)
+                {return;}
+                repeater();
+            },10000);
+           }
+           repeater();
+    }
+   repeat();
 </script>
 
 {% endblock %}
