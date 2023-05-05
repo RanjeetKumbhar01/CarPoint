@@ -7,6 +7,11 @@
    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/price.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav_home.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/model.css' %}"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>{% block title %} {% endblock %}</title>
     
@@ -15,14 +20,14 @@
     <!-- NavBar -->
     <header>
         <div class="nav container">
-            <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-menu' id="menu-icon" onclick="select_menu()"></i>
             <a href="#" class="logo">Car<span>Point</span></a>            
                 <ul class="navbar">
-                    <li><a class="active" href="#home">HEllow</a></li>
+                    <li><a class="active" href="#home">Home</a></li>
                     <li><a href="#price">Price</a></li>
                     <li><a href="#model">Model</a></li>
-                    <li><a href="#home">Statitics</a></li>
-                    <li><a href="#home">About</a></li>
+                    <li><a href="#stat">Statitics</a></li>
+                    <li><a href="#about">About</a></li>
                 </ul>
         </div>
     </header>
@@ -33,6 +38,18 @@
    
     
 </body>
+<script>
+    let menu = document.querySelector(' .navbar');
+    console.log(menu);
+   document.querySelector("#menu-icon").onclick = () =>{
+    menu.classList.toggle('active')
+   }
+
+   window.onscroll = () =>{
+    menu.classList.remove('active');
+    
+   }
+ </script>
 {% block script %}
 {% endblock %}
 

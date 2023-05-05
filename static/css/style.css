@@ -21,7 +21,12 @@
     --text-color:#020102;
     --bg-color:#fff;
 }
- section{
+
+/* cutom scroll */
+
+section{
+    
+    /* width: auto; */
     padding: 4rem 0 2rem;
  }
 img {
@@ -33,7 +38,7 @@ body{
 }
 
 .container{
-    max-width: 2068px;
+    /* max-width: 2068px; */
     margin-left: 0;
     margin-right: 0;
 }
@@ -47,10 +52,11 @@ header{
     z-index: 100;
 }
 header.shadow0 {
-    background: #ffffff12;
+    background: #ffffff;
     box-shadow: 4px 4px 10px rgb(15 54 55 / 10%);
     transition: 0.5s;
-}
+ }
+ /*
 header.logo_bg_0 .logo span{
     color: var(--bg-color);
 }
@@ -65,7 +71,7 @@ header.link_color_0 .navbar a {
 
 header.link_color_1 .navbar a {
     color: var(--text-color);
-}
+} */
 
 
 .nav{
@@ -115,7 +121,7 @@ header.link_color_1 .navbar a {
     max-width: auto;
     width: 100%;
     margin: auto;
-    min-height: 640px;
+    min-height: 740px;   
     display: flex;
     align-items: center;
     background:url('car-background.png'),url('wave.svg');
@@ -151,12 +157,15 @@ header.link_color_1 .navbar a {
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center left;
+    padding-top: 70px;
+    /* padding-left: 50px; */
 }
 .btn:hover{
     background: #fd052f;
 }
 .heading{
     text-align: center;
+   
 }
 .heading span{
     font-weight: 300;
@@ -172,7 +181,7 @@ header.link_color_1 .navbar a {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 500px;
+    /* height: 500px; */
 }
 .car-container .box
 {
@@ -194,6 +203,7 @@ header.link_color_1 .navbar a {
     flex-direction: column;
     padding: 15px;
     text-align: center;
+    height: 100%;
 }
 .car-container .box .boxContent img{
     width: 80%;
@@ -201,6 +211,7 @@ header.link_color_1 .navbar a {
 }
 .car-container .box .boxContent h1{
     margin-top: 5px;
+    height:100%
 }
 
 .car-container .box:hover{
@@ -217,11 +228,15 @@ header.link_color_1 .navbar a {
     font-size: 2rem;
 
 }
+.model{
+    margin-bottom: 150px;
+}
 /* model  */
 .model-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
  .model-container .box{
     position: relative;

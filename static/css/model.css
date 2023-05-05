@@ -1,0 +1,107 @@
+@media only screen and (max-width: 1080px){
+    .model-container{
+        display: flex;
+        flex-wrap: wrap;
+       margin: 0 1rem 0;
+        /* margin: 0px; */
+        /* justify-content: space-between; */
+    }
+    .model-container .box{
+        position: relative;
+        width: 300px;
+        padding: 30px;       
+        margin: 0px;
+       
+    }
+    }
+    
+    @media only screen and (max-width: 991px){
+        .model-container .box{
+            position: relative;
+            width: 290px;
+            padding: 25px;       
+            margin: 0px;
+           
+        }
+       
+    }
+    @media only screen and (max-width: 930px){
+        .model-container .box{
+            position: relative;
+            width: 280px;
+            padding: 20px;       
+            margin: 0px;
+           
+        }
+       
+    }
+    
+    @media only screen and (max-width: 880px)    
+    {
+        .model-container{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+           margin: 0 1rem 0;
+            /* margin: 0px; */
+            /* justify-content: space-between; */
+        }
+        .model-container .box{
+            position: relative;
+            width: 300px;
+            padding: 40px;       
+            margin: 20px;
+           
+        }
+    }
+    @media only screen and (max-width: 710px)
+    {
+        .model-container .box{
+            position: relative;
+            width: 250px;
+            padding: 40px;       
+            margin: 20px;
+           
+        }
+        
+.model-container .box .icon{
+    /* position: relative; */
+    width: 60px;
+    font-size: 30px;
+    height: 60px;
+}
+.model-container .box .content h3{
+    font-size: 15px;
+    margin: 10px 0;
+    padding: 0;
+}
+.model-container .box  .content p{
+    margin: 0;
+    font-size: 0.7rem;
+    width: 100%;
+    padding: 0;
+}
+        
+    }
+    
+    @media only screen and (max-width: 770px)
+    {
+        .model{
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding-top: 20px;
+        }
+    
+    }
+    
+    @media only screen and (max-width: 680px)
+    {
+       
+    }
+    
+    
+    @media only screen and (max-width: 530px)
+    {
+     
+    }
