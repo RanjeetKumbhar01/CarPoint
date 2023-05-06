@@ -1,14 +1,33 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+
 
 def index(request):
     return render(request,'index.html')
 
 def buyingPrice(request):
-    return HttpResponse("<a href='/aboutUs'>click Me</a>")
+    return render(request,'price.html')
+def buy(request):
+    if request.method == 'POST':
+        tourque=request.POST.get('Torque')
+        Power=request.POST.get('Power')
+        Mileage=request.POST.get('Mileage')
+        Manufacturer=request.POST.get('Manufacturer')
+        
+        param={'Torque':tourque,
+               "Power":Power,
+               'Mileage':Mileage,               
+               'Manufacturer':Manufacturer,
+               'Price':100,
+               }
+        return render(request,'price.html',param)
+    elif request.method == 'GET':
+        
+        return render(request,'price_init.html')
 
 def sellingPrice(request):
     return HttpResponse("It Is selling Price")
+
 
 def firstModel(request):
     return HttpResponse("It Is Model 1")

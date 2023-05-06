@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'form_css/price.css' %}"/>
+{% endblock %}
+{% block title %}
+Know Price
+{% endblock %}
+
+{% block body %}
+  <!-- <div class="form-container"> -->
+    <section class="buy">
+       <div class="buy-container">
+        <div class="result-container">
+            
+            <h1><span>find</span><br>Buying Price</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quod eaque nu</p>
+            <img src="../static/image/buy-car.png">
+          </div>
+          <div class="form">
+          <form class="form-container" id="post_form" action="/buy" method="post" onsubmit="return validateForm()" >
+              {% csrf_token %}
+              <div class="inputBox">
+                    
+               <input type="text"  name="Torque" id="Torque" onblur="validateFields(this)" required="required">
+               <span>Torque</span>
+              <p id="Torque_span"></p>
+              
+              </div>
+      
+             <div class="inputBox">
+             
+              <input type="text" value="" name="Power" id="Power" onblur="validateFields(this)" required="required">
+              <span>Power</span>
+              <p id="Power_span"></p>
+              
+             </div>
+      
+             <div class="inputBox">
+             
+              <input type="text" value="" name="Mileage" id="Mileage" onblur="validateFields(this)" required="required">
+              <span >Mileage</span>
+              <p id="Mileage_span"></p>
+             
+             </div>
+      
+              <div class="inputBox">          
+              <input type="text" value="" name="Manufacturer" id="Manufacturer" required="required">
+              <span >Manufacturer</span>   
+              <p id="Manufacturer_span"></p>      
+              </div>    
+      
+      
+              <button type="submit" >Submit</button>    
+              
+          </form>
+        </div>
+       </div>
+    </section>
+
+    
+    
+    {% endblock %}
+    {% block script %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      flag1=true;
+      function validateFields(field)      
+      {
+        // alert(field.value.length)
+        
+        if(!Number.isInteger(parseInt(field.value)) )
+            {
+                document.getElementById(field.name+'_span').innerHTML=field.name+" Must be Integer";
+                flag1=false;
+            } 
+            else{
+                document.getElementById(field.name+'_span').innerHTML="";
+                flag1=true;
+
+            }
+      }
+      
+      function validateForm()
+        {
+            flag2=false;
+            const Torque =document.getElementById('Torque').value;          
+            const Power = document.getElementById('Power').value;
+            const Mileage =document.getElementById('Mileage').value;
+            const Manufacturer = document.getElementById('Manufacturer').value;
+            
+            if(Torque=="")
+            {
+              //  document.getElementById('Torque_span').innerHTML="Please Enter Value"
+                flag2=false;
+            }
+            else
+            {
+                flag2=true;
+            }
+           
+           
+
+            if(Power=="")
+            {
+                //document.getElementById('Power_span').innerHTML="Please Enter Value"
+                flag2=false;
+            }
+            else
+            {
+                flag2=true;
+            }
+
+           if(Mileage=="")
+            {
+                //document.getElementById('Mileage_span').innerHTML="Please Enter Value"
+                flag2=false;
+            }
+            else{
+                flag2=true;
+            }
+
+          if(Manufacturer=="")
+            {
+                //document.getElementById('Manufacturer_span').innerHTML="Please Enter Value"
+                flag2=false;
+            }
+            else
+            {
+                flag2=true;
+            }
+            
+           
+            if(flag2==true && flag1 == true)
+            return true;
+            else
+            return false;
+        }
+   
+    </script>
+    {% endblock %}

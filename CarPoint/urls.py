@@ -18,4 +18,5 @@ urlpatterns = [
     path('dataset5/',views.dataset5,name='dataset 5'),
     path('aboutUs/',views.aboutUs,name='about us'),
     path('discover/',views.discover,name='discover'),
+    path('buy',views.buy,name='buy'),
 ]

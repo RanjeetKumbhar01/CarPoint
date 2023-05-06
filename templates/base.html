@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/nav_home.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/model.css' %}"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {% block style %}
+    {% endblock %}
     <title>{% block title %} {% endblock %}</title>
     
 </head>
@@ -23,11 +25,11 @@
             <i class='bx bx-menu' id="menu-icon" onclick="select_menu()"></i>
             <a href="#" class="logo">Car<span>Point</span></a>            
                 <ul class="navbar">
-                    <li><a class="active" href="#home">Home</a></li>
-                    <li><a href="#price">Price</a></li>
-                    <li><a href="#model">Model</a></li>
-                    <li><a href="#stat">Statitics</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a class="active" href="/#home">Home</a></li>
+                    <li><a href="/#price">Price</a></li>
+                    <li><a href="/#model">Model</a></li>
+                    <li><a href="/#stat">Statitics</a></li>
+                    <li><a href="/#about">About</a></li>
                 </ul>
         </div>
     </header>
@@ -36,7 +38,43 @@
     {% endblock %}
     
    
+<section class="footer">
     
+    <div class="footer-container container">
+        <div class="footer-box">
+            <a href="#" class="logo">Car<span>Point</span></a>
+            <div class="social">
+                <a href="#"><i class="bx bxl-facebook"></i></a>
+                <a href="#"><i class="bx bxl-youtube"></i></a>
+                <a href="#"><i class="bx bxl-instagram"></i></a>
+                <a href="#"><i class="bx bxl-github"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Page</h3>
+            <a href="/#home">Home</a>
+            <a href="/#price">Price</a>
+            <a href="/#model">Model</a>
+            <a href="/#stat">Statitics</a>
+        </div>
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <div class="phone">
+                <i class="bx bxs-phone"></i>
+                <p>7058184848</p>
+            </div>
+            <div class="email">
+                <i class="bx bxl-gmail"></i>
+                <p>ajaymore0634@gmail.com</p>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<div class="copyright">
+    <p>&#169 CarPoint All Right Reserverd</p>
+</div>
 </body>
 <script>
     let menu = document.querySelector(' .navbar');
