@@ -1,0 +1,177 @@
+.about{
+    width: 100%;
+    min-height: 100vh;
+    background:#d90429 ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 10px; */
+   
+}
+/* .about .about .team{
+    width: 60%;
+    float: right;
+} */
+.about .about-container{
+    width: 50%;
+    display: block;
+    align-content:center;
+    justify-content: center;
+    /* padding-top:100px ; */
+    /* width: 800px; */
+    height: 400px;
+    margin-left: 10px;
+    /* padding: auto; */
+    background-color:rgba(255,255,255,0.12);
+    box-shadow: 0px 0px 15px rgba(0,0,0, 0.2);
+    border-radius: 15px;
+    /* padding-left: 50px; */
+    padding: 50px;
+}
+.about .about-container .content-section
+{
+    float:left;
+    width: 90%;
+    height: 100%;
+}
+
+.about .about-container .content-section .title{
+    padding: 10px;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #fff;
+}
+.about .about-container .content-section .content
+{
+    height: 100%;
+}
+.about .about-container .content-section .content h3{
+    color: #ffffffa9;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.about .about-container .content-section .content p{
+     /* font-size: 18px; */
+    margin-bottom: 50px;
+    color: rgba(0, 0, 0, 0.788);
+    /* line-height: 1.5px;  */
+    margin-top: 20px; 
+    font-size: 18px;
+    font-weight: 300;
+    text-transform: initial;
+    text-align: justify;
+}
+
+.about .about-container .content-section .content   a{
+   
+    border-radius: 6px;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    background:#ffffff1e;
+    color: #fff;
+    /* background: #fff; */
+}
+.about .about-container .content-section .content   a:hover{
+    color: #d90429;
+    background:#fff;
+
+}
+
+/* Team */
+
+/* Team */
+.about .team-container
+{
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin: 40px 0; */
+    margin: auto;
+    
+}
+ .about .team-container .card{
+    position: relative;
+    width: 300px;
+    height:400px ;
+    background-color:rgba(255,255,255,0.12);
+    margin: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+.about .team-container .card .content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.about .team-container .card:hover .content{
+    opacity: 1;
+   transform: translateY(-20px);
+}
+.about .team-container .card .content .imgBx{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid rgba(0,0,0,0.25);    
+}
+.about .team-container .card .content .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.about .team-container .card .content .contentBx h3{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0 10px;
+    line-height: 1.1em;
+}
+ 
+.about .team-container .card .content .contentBx h3 span{
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+}  
+.about .team-container .card  .sci
+{
+    padding: 10px;
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+}
+.about .team-container .card  .sci li{
+    list-style: none;
+    margin: 0 10px;
+    transform: translateY(40px);
+    transition: 0.5s;  
+    opacity: 0;
+    transition-delay: calc(0.1s * var(--i));
+}
+.about .team-container .card:hover .sci li{
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.about .team-container .card  .sci li a{
+    color: #fff;
+    font-size: 24px;
+}

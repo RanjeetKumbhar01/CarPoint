@@ -1,0 +1,576 @@
+.stat{
+    /* height: 100hv; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('wave8.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center left;
+    padding-top: 150px;
+    padding-left: 20px;
+    padding-right: 10px;
+   
+    /* background: #1D212B; */
+}
+.stat .stat-heading{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+}
+.stat .stat-heading h4{
+    
+    font-size: 1.2rem;
+    color: #000000b6
+    
+}
+.stat .stat-heading h2{
+    font-size: 3.5rem;
+    margin-top: 30px;
+    color: #fff;
+}
+.stat .stat-heading p{
+    width: 90%;
+    text-align: justify;
+    margin-top: 30px;
+    color: #000000b6;
+}
+.stat .img-slider{
+    position: relative;
+    width: 80%;
+    height: 500px;
+    margin: 10px;
+    /* background: #1D212B; */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.522);
+}
+
+.stat .img-slider .slide{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: circle(0% at 0 50%);
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.516); */
+}
+.stat .img-slider .slide.active{
+    clip-path: circle(150% at 0 50%);
+    transition: 2s;
+    transition-property: clip-path;
+}
+.stat .img-slider .slide img{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.stat .img-slider .slide .info{
+    position: absolute;
+    top: 0;
+    padding: 15px 30px;
+}
+.stat .img-slider .slide .info h1{
+    color: red;
+    font-size: 45px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.stat .img-slider .slide .info p{
+    color: #000;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px
+}
+.stat .img-slider .slide .info a{
+    /* background: red; */
+    border: 2px solid red;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius:5px;
+    color: red;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.stat .img-slider .slide .info a:hover
+{
+    background: red;
+    color: #fff;
+    font-weight: 500;
+}
+.stat .img-slider .navigation{
+    z-index: 2;
+    position:absolute;
+    display: flex;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.stat .img-slider .navigation .btn{
+    background: rgba(232, 11, 11, 0.84);
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0px;
+}
+.stat .img-slider .navigation .btn.active{
+    background: #2696E9;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+
+
+@media only screen and (max-width: 1200px){
+    .stat{
+        padding-top: 140px;
+        padding-right: 20px;
+        padding-left: 20px;
+       padding-bottom:40px ;
+    }
+    .stat .stat-heading h4{
+    
+        font-size: 1.0rem;           
+    } 
+    .stat .stat-heading h2{
+        font-size: 2.8rem;
+        margin-top: 20px;   
+    }
+    .stat .img-slider{       
+        width: 1000px;
+        height: 400px;
+        margin: 10px;
+       
+    }
+    
+.stat .stat-heading p{
+    width: 90%;
+   font-size: 0.9rem;
+}
+    }
+@media only screen and (max-width: 1040px){
+    .stat{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding-top: 80px;
+        padding-right: 30px;
+    }
+    .stat .stat-heading    
+    {
+        align-items: center;
+        width: 100%;
+    }
+    .stat .stat-heading h4{
+       color: #fd052f;
+        font-size: 1.5rem;           
+    } 
+    .stat .stat-heading p{
+        margin-top: 10px;
+        width: 70%;
+    }
+    .stat .stat-heading h2{
+        color:#000;
+        font-size: 3rem;
+        margin-top: 10px;
+
+        
+    }
+    .stat .img-slider{
+       
+        width: 100%;
+        height: 400px;
+        margin: 10px;
+        margin-top: 30px;
+        
+       
+        /* background: #1D212B; */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.522);
+    }
+    
+    }
+    
+    @media only screen and (max-width: 820px){
+        .stat .stat-heading h4{
+            color: #fd052f;
+             font-size: 1.0rem;           
+         } 
+         .stat .stat-heading p{
+             margin-top: 10px;
+             width: 70%;
+         }
+         .stat .stat-heading h2{
+             color:#000;
+             font-size: 2.5rem;
+             margin-top: 10px;   
+             
+         }      
+         .stat .img-slider .slide .info{
+            position: absolute;
+            top: 0;
+            padding: 15px 30px;
+        }
+        .stat .img-slider .slide .info h1{
+
+            font-size: 40px;           
+            letter-spacing: 2px;
+        }
+        
+        .stat .img-slider .slide .info p{
+           
+            font-size: 14px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px
+        }
+        .stat .img-slider .slide .info a{
+            /* background: red; */
+            border: 2px solid red;
+            padding: 6px 12px;
+            margin: 10px;
+           
+        }
+    }
+    @media only screen and (max-width: 730px){
+       
+        .stat .stat-heading p{
+            margin-top: 10px;
+            width: 80%;
+        }
+        .stat .stat-heading h2{
+            color:#000;
+            font-size: 2.0rem;
+            margin-top: 10px;   
+            
+        }     
+        .stat .img-slider{
+       
+            width: 100%;
+            height: 350px;
+            margin: 10px;
+            margin-top: 30px;
+        }
+        .stat .img-slider .slide .info{
+            position: absolute;
+            top: 0;
+            padding: 15px 30px;
+        }
+        .stat .img-slider .slide .info h1{
+
+            font-size: 30px;           
+            letter-spacing: 2px;
+        }
+        
+        .stat .img-slider .slide .info p{
+           
+            font-size: 12px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px
+        }
+        .stat .img-slider .slide .info a{
+            /* background: red; */
+            border: 2px solid red;
+            padding: 4px 10px;
+            margin: 5px;
+            font-size: 0.8rem
+           
+        }
+    }
+    
+    @media only screen and (max-width: 650px)    
+    {
+        .stat .stat-heading p{
+            margin-top: 10px;
+            width: 90%;
+        }
+        .stat .stat-heading h2{
+            color:#000;
+            font-size: 1.8rem;
+            margin-top: 10px;   
+            
+        }     
+          
+        .stat .img-slider{
+       
+            width: 100%;
+            height: 300px;
+            margin: 10px;
+            margin-top: 30px;
+        }
+        .stat .img-slider .slide .info{
+            position: absolute;
+            top: 0;
+            padding: 15px 30px;
+        }
+        .stat .img-slider .slide .info h1{
+
+            font-size: 28px;           
+            letter-spacing: 2px;
+        }
+        
+        .stat .img-slider .slide .info p{
+           
+            font-size: 10px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px
+        }
+        .stat .img-slider .slide .info a{
+            /* background: red; */
+            border: 2px solid red;
+            padding: 4px 10px;
+            margin: 5px;
+            font-size: 0.8rem
+           
+        }
+    }
+    @media only screen and (max-width: 570px)
+    {
+        .stat .stat-heading p{
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 100%;
+        }
+        .stat .stat-heading h2{
+            color:#000;
+            font-size: 1.8rem;
+            margin-top: 8px;   
+            
+        }     
+        .stat .img-slider{
+       
+            width: 100%;
+            height: 260px;
+            margin: 10px;
+            margin-top: 20px;
+        }
+        .stat .img-slider .slide .info{
+            position: absolute;
+            top: 0;
+            padding: 15px 30px;
+        }
+        .stat .img-slider .slide .info h1{
+
+            font-size: 25px;           
+            letter-spacing: 2px;
+        }
+        
+        .stat .img-slider .slide .info p{
+           
+            font-size: 8px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px
+        }
+        .stat .img-slider .slide .info a{
+            /* background: red; */
+            border: 2px solid red;
+            padding: 4px 10px;
+            margin: 5px;
+            font-size: 0.5rem
+           
+        }
+    }
+
+
+
+
+
+/* 
+@media only screen and (max-width: 820px) {
+    .stat{
+        flex-direction: column;
+        
+    }
+    .stat .stat-heading{       
+        width: 100%; 
+        justify-content: center;
+        align-items: center;       
+    }
+    .stat .stat-heading h4{    
+        font-size: 1rem;
+        color: #d90429;
+        
+    }
+    .stat .stat-heading h2{
+        font-size: 2rem;
+        margin-left: 0px;
+        color: #000;
+    }
+    .stat .stat-heading p{
+        width: 70%;
+        text-align: justify;
+        margin-top:20px;
+        color: #000000ae;
+    }
+    .stat .img-slider
+    {
+        width: 600px;
+        height: 375px;
+    }
+    .stat .img-slider .slide .info{
+        padding: 10px 25px;
+    }
+    .stat .img-slider .slide .info h1{
+        font-size: 35px;
+    }
+    .stat .img-slider .slide .info p{
+         width: 70%;
+         font-size: 15px;
+    }
+    .stat .img-slider .navigation{
+        bottom: 25px;
+    }
+    .stat .img-slider .navigation .btn{
+        width: 10px;
+        height: 10px;
+        margin: 8px;
+    }
+    .stat .img-slider .slide .info a{
+        font-weight: 300;
+        padding: 8px 15px;
+        margin: 8px;
+       
+    }
+    
+}
+
+@media only screen and (max-width: 620px) {
+    .stat .stat-heading h4{    
+        font-size: 0.938rem;
+        color: #d90429;
+        
+    }
+    .stat .stat-heading h2{
+        font-size: 1.5rem;
+        margin-left: 0px;
+        color: #000;
+    }
+    .stat .stat-heading p{
+        width:50%;
+        text-align: justify;
+        margin-top:10px;
+        font-size: 0.7rem;
+        color: #000000ae;
+    }
+    .stat .img-slider
+    {
+        width: 400px;
+        height: 250px;
+    }
+    .stat .img-slider .slide .info{
+        padding: 10px 20px;
+    }
+    .stat .img-slider .slide .info h1{
+        font-size: 30px;
+        margin-bottom: 0px;
+    }
+    .stat .img-slider .slide .info p{
+         width: 80%;
+         font-size: 13px;
+    }
+    .stat .img-slider .navigation{
+        bottom: 15px;
+    }
+    .img-slider .navigation .btn{
+        width: 8px;
+        height: 8px;
+        margin: 6px;
+    }
+    .stat .img-slider .slide .info a{
+       font-weight: 250;
+        padding: 6px 10px;
+        margin: 6px;
+       
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .stat .stat-heading p{
+        width:70%;
+        text-align: justify;
+        margin-top:5px;
+        font-size: 0.5rem;
+        color: #000000ae;
+    }
+    .stat .img-slider
+    {
+        width: 360px;
+        height: 230px;
+        
+    }
+    .stat .img-slider .slide .info{
+        padding: 8px 15px;
+    }
+    .stat .img-slider .slide .info h1{
+        margin-bottom: 0px;
+        font-size: 30px;
+    }
+    .stat .img-slider .slide .info p{
+         width: 90%;
+         font-size: 10px;
+    }
+    .stat .img-slider .navigation{
+        bottom: 15px;
+    }
+    .img-slider .navigation .btn{
+        width: 8px;
+        height: 8px;
+        margin: 6px;
+    }
+    .stat .img-slider .slide .info a{
+       
+        padding: 6px 10px;
+        margin: 6px;
+       
+    }
+}
+@media only screen and (max-width: 420px) {
+    .stat .stat-heading p{
+        display: none;
+    }
+    .stat .img-slider
+    {
+        width: 320px;
+        height: 200px;
+    }
+    .stat .img-slider .slide .info{
+        padding: 5px 10px;
+    }
+    .stat .img-slider .slide .info h1{
+        font-size: 15px;
+        
+    }
+    .stat .img-slider .slide .info p{
+        width: 95%;
+        font-size: 8px;
+      
+    }
+    .stat .img-slider .navigation{
+        bottom: 15px;
+    }
+    .img-slider .navigation .btn{
+        width: 6px;
+        height: 6px;
+        margin: 4px;
+    }
+    .stat .img-slider .slide .info a{
+       
+        font-weight: 150;
+        padding: 4px 6px;
+        margin: 4px;
+       
+    }
+  
+} */

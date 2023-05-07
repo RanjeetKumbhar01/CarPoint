@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+
+
+/* model  */
+
+
+* {
+    font-family: 'Poppins',sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-padding-top: 1rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-color:#d90429;
+    --text-color:#020102;
+    --bg-color:#fff;
+}
+
+/* cutom scroll */
+
+section{
+    
+    /* width: auto; */
+    padding: 4rem 0 2rem;
+ }
+img {
+    width: 100%;
+}
+
+body{
+    color: var(--text-color);
+}
+
+.container{
+    /* max-width: 2068px; */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+header{
+    width: 100%;
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+header.shadow0 {
+    background: #ffffff;
+    box-shadow: 4px 4px 10px rgb(15 54 55 / 10%);
+    transition: 0.5s;
+ }
+ /*
+header.logo_bg_0 .logo span{
+    color: var(--bg-color);
+}
+
+header.logo_bg_1 .logo span{
+    color: var(--main-color);
+}
+
+header.link_color_0 .navbar a {
+    color: #fff;
+}
+
+header.link_color_1 .navbar a {
+    color: var(--text-color);
+} */
+
+
+.nav{
+    display: flex;    
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 35px;
+}
+
+#menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: none;
+}
+.logo{
+    font-size: 1.2rem;
+    font-weight: 700;    
+    color: var(--text-color);
+   
+}
+.logo span{
+    color: var(--main-color);
+}
+ 
+.navbar{
+    display: flex;
+    align-items: right;
+    column-gap: 2rem;
+}
+.navbar a {
+
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+
+}
+
+.navbar a:hover,.navbar .active {
+    color: var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+  }
+
+.home{
+    max-width: auto;
+    width: 100%;
+    margin: auto;
+    min-height: 740px;   
+    display: flex;
+    align-items: center;
+    background:url('car-background.png'),url('wave.svg');
+    background-repeat: no-repeat;
+    background-size: 50%,cover;
+    background-position:right bottom,center left;
+}
+
+.home-text{
+    padding: 130px;
+}
+.home-text h1{
+    font-size: 2.4rem;
+}
+.home-text span
+{
+    color: var(--main-color);
+}
+.home-text p{
+    font-size: 0.938rem;
+    font-weight: 300;
+    margin: 0.5rem 0 1.2rem;
+}
+
+.btn{
+    padding: 10px 22px;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-weight: 400;
+}
+.price {
+    background:url('wave1.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center left;
+    padding-top: 70px;
+    /* padding-left: 50px; */
+}
+.btn:hover{
+    background: #fd052f;
+}
+.heading{
+    text-align: center;
+   
+}
+.heading span{
+    font-weight: 300;
+    color: var(--bg-color);
+}
+.heading p{
+    font-size: 0.938rem;
+    font-weight: 300;
+}
+.car-container{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* height: 500px; */
+}
+.car-container .box
+{
+    width: 350px;  
+    align-items: center;
+    height: 350px;
+    border-radius: 10px;
+    background: var(--bg-color);
+    margin: 70px;
+    position: relative;
+    box-shadow: 0px 0px 15px;
+    transition: 3s all ease-in-out;
+
+}
+.car-container .box .boxContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    height: 100%;
+}
+.car-container .box .boxContent img{
+    width: 80%;
+    height: 80%;
+}
+.car-container .box .boxContent h1{
+    margin-top: 5px;
+    height:100%
+}
+
+.car-container .box:hover{
+    background: linear-gradient(130deg, #d90429 0%, #f73b5a 100%);
+    box-shadow: none;
+}
+
+.car-container .box .boxContent a{
+    
+    /* padding: 10px 22px; */
+    /* background: var(--bg-color); */
+    color: var(--bg-color);
+    font-weight: 400;
+    font-size: 2rem;
+
+}
+.model{
+    margin-bottom: 150px;
+}
+/* model  */
+.model-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+ .model-container .box{
+    position: relative;
+    width: 350px;
+    padding: 40px;
+    background: var(--bg-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    border-radius: 4px;
+    margin: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: center;
+}
+.model-container .box::before{
+    content: '';
+    width: 50%;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,.2);
+    z-index: 2;
+}
+.model-container .box .icon{
+    /* position: relative; */
+    width: 80px;
+    height: 80px;
+    color: #fff;
+    background: #000;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 50%;
+    font-size: 40px;
+    font-weight: 700;
+    transition: 1s;
+}
+
+.model-container .box .icon{
+    box-shadow: 0 0 0 0 var(--main-color);
+    background: var(--main-color);
+}
+.model-container .box:hover .icon{
+    box-shadow: 0 0 0 400px var(--main-color);
+   
+}
+
+.model-container .box  .content{
+    /* position: relative; */
+    z-index: 1;
+    transition: 0.5s;
+}
+.model-container .box:hover  .content{
+    color: #fff;
+}
+
+.model-container .box .content h3{
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 0;
+}
+.model-container .box  .content p{
+    margin: 0;
+    padding: 0;
+}
+.model-container .box  .content a{
+    display: inline-block;
+    padding: 10px 20px;
+    background:var(--bg-color) ;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+}
+.model-heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+   
+}
+.model-heading h2{
+    font-size: 2rem;
+}
+.model-heading p{
+    color: var(--main-color);
+}
+
