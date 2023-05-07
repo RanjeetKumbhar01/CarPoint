@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block style %}
 {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'form_css/price.css' %}"/>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     
+<link rel="stylesheet" type="text/css" href="{% static 'form_css/price.css' %}"/>
 {% endblock %}
 {% block title %}
 Know Price
@@ -20,37 +22,71 @@ Know Price
           <div class="form">
           <form class="form-container" id="post_form" action="/buy" method="post" onsubmit="return validateForm()" >
               {% csrf_token %}
-              <div class="inputBox">
-                    
+
+               <!-- Manufacturer -->   
+              <div class="inputBox">          
+                <input type="text" value="" name="Manufacturer" id="Manufacturer" required="required">
+                <span >Manufacturer</span>   
+                <p id="Manufacturer_span"></p>      
+            </div>
+
+             <!-- Transmission -->
+             <div class="inputBox wrapper_trans">          
+                <input type="text" value="" name="Transmission" id="Transmission" required="required" style="caret-color: transparent;" onkeydown="return false"; autocomplete="off">
+                <span >Transmission</span>   
+                <div class="icon"><i class='bx bx-chevron-down'></i></div> 
+                <p id="Transmission_span"></p>
+                <div class="trans-list">
+                    <ul class="trans_options">
+                      <li>hellow</li>
+                      <li>hellow</li>
+                      <li>hellow</li>
+                      <li>hellow</li>
+                    </ul>
+                </div>         
+                </div>  
+  
+                
+              <!-- Fuel -->
+                <div class="inputBox wrapper">          
+                <input type="text" value="" name="Fuel" id="Fuel" required="required"  style="caret-color: transparent;" onkeydown="return false" autocomplete="off">
+                <span >Fuel</span>   
+                <div class="icon"><i class='bx bx-chevron-down'></i></div> 
+                <p id="Manufacturer_span"></p>  
+                 <div class="fuel-list">
+                        <ul class="options">
+                          
+                        </ul>
+
+                    </div>     
+                </div>    
+            
+                <!-- Mileage -->
+             <div class="inputBox">             
+                <input type="text" value="" name="Mileage" id="Mileage" onblur="validateFields(this)" required="required">
+                <span >Mileage</span>
+                <p id="Mileage_span"></p>             
+               </div>
+
+               <!--Torque  -->
+              <div class="inputBox">                   
                <input type="text"  name="Torque" id="Torque" onblur="validateFields(this)" required="required">
                <span>Torque</span>
-              <p id="Torque_span"></p>
-              
+              <p id="Torque_span"></p>              
               </div>
       
-             <div class="inputBox">
-             
+              <!-- Power -->
+             <div class="inputBox">             
               <input type="text" value="" name="Power" id="Power" onblur="validateFields(this)" required="required">
               <span>Power</span>
-              <p id="Power_span"></p>
-              
+              <p id="Power_span"></p>              
              </div>
       
-             <div class="inputBox">
+
              
-              <input type="text" value="" name="Mileage" id="Mileage" onblur="validateFields(this)" required="required">
-              <span >Mileage</span>
-              <p id="Mileage_span"></p>
+
              
-             </div>
-      
-              <div class="inputBox">          
-              <input type="text" value="" name="Manufacturer" id="Manufacturer" required="required">
-              <span >Manufacturer</span>   
-              <p id="Manufacturer_span"></p>      
-              </div>    
-      
-      
+             <!-- button -->
               <button type="submit" >Submit</button>    
               
           </form>
@@ -137,5 +173,48 @@ Know Price
             return false;
         }
    
+    </script>
+    <!-- script for fuel  -->
+    <script>
+    fuels=['Petrol', 'CNG', 'Diesel', 'CNG + Petrol', 'Electric', 'Hybrid'];
+
+   const  wrapper=document.querySelector('.form-container');
+    inputBx=wrapper.querySelector('.wrapper');
+    inputBx.classList.remove("active");  
+    option=document.querySelector(".options")
+    
+    
+    function selectLi(data){
+        document.getElementById('Fuel').value=data.innerText;
+             
+
+    }
+    
+    inputBx.addEventListener('click',()=>{
+        inputBx.classList.toggle("active")
+        arr=[];
+        arr=fuels.map(data=>"<li onclick='selectLi(this)'>"+data+"</li>").join("")
+        console.log(arr);
+        option.innerHTML=arr;
+    });
+    </script>
+<!-- transmission -->
+  <script>  
+  trans=['Manual', 'Automatic', 'AMT', 'CVT', 'DCT'];
+   const TransWrapper=document.querySelector('.wrapper_trans')
+   Transoption=document.querySelector(".trans_options")
+
+   function selectTransLi(data){
+        document.getElementById('Transmission').value=data.innerText;
+   }
+
+   TransWrapper.addEventListener('click',()=>{
+    TransWrapper.classList.toggle("active")
+        arr=[];
+        arr=trans.map(data=>"<li onclick='selectTransLi(this)'>"+data+"</li>").join("")
+        console.log(arr);
+        Transoption.innerHTML=arr;
+    });
+
     </script>
     {% endblock %}

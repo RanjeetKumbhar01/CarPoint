@@ -13,11 +13,15 @@ def buy(request):
         Power=request.POST.get('Power')
         Mileage=request.POST.get('Mileage')
         Manufacturer=request.POST.get('Manufacturer')
+        Transmission=request.POST.get('Transmission')
+        Fuel=request.POST.get('Fuel')
         
         param={'Torque':tourque,
                "Power":Power,
                'Mileage':Mileage,               
                'Manufacturer':Manufacturer,
+               'Transmission':Transmission,
+               'Fuel':Fuel,
                'Price':100,
                }
         return render(request,'price.html',param)
