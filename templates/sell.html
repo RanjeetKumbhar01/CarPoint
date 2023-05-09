@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     
+<link rel="stylesheet" type="text/css" href="{% static 'form_css/sell.css' %}"/>
+{% endblock %}
+{% block title %}
+Selling Price
+{% endblock %}
+
+{% block body %}
+
+<section class="selling_Page_container">
+    <div class="page_container">
+        <div class="hero_section">
+            <h3>Find</h3>
+            <h1>Selling Price</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
+            <img src="../static/image/buy-car.png" alt="sell price image">
+        </div>
+
+        <div class="selling_form">
+            <form class="sell_form_container" action="" method="post" >
+                {% csrf_token %}
+                <!-- make -->
+                <div class="form_fields">
+                    <p>Manufacturer</p>
+                    <input type="text" value="{{Manufacturer}}" class="Manufacturer" id="Manufacturer" name="Manufacturer" placeholder="Manufacturer" autocomplete="off"> 
+                    <div class="Make_suggection">
+                        <ul>
+                           
+                        </ul>
+                    </div>                   
+                </div>
+               <!-- model -->
+                <div class="form_fields">
+                    <p>Model</p>
+                    <input type="text" id="Model" value="{{Model}}"  name="Model" placeholder="Model" autocomplete="off"> 
+                    <div class="model_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                     
+                </div>
+                 <!-- car type -->
+                <div class="form_fields">
+                    <p>Car Type</p>
+                    <input type="text" value="{{Type}}" id="Type" name="Type" placeholder="Type"> 
+                    <div class="Type_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                     
+                    
+                </div>
+               <!-- used year -->
+                <div class="form_fields">
+                    <p>Used Year</p>
+                    <input type="month" value="{{Year}}" id="Year" name="Year" >                                    
+                </div>
+                <!-- fuel Type -->
+                <div class="form_fields">
+                    <p>Fuel Type</p>
+                    <input type="text" value="{{Fuel}}" id="Fuel" name="Fuel" placeholder="Fuel Type" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
+                    <i  id='icon' class='bx bx-chevron-down'></i>
+                    <div class="Fuel_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                      
+                </div>
+               <!-- condition -->
+                <div class="form_fields">
+                    <p>Condition</p>
+                    <input type="text" value="{{Condition}}" id="Condition" name="Condition" placeholder="Condition Of Car"autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <i  id='iconCon' class='bx bx-chevron-down'></i>
+                    <div class="Condition_suggection">
+                        <ul >                       
+                        </ul>
+                    </div>                  
+                </div>
+              <!-- odometer -->
+                <div class="form_fields">
+                    <p>Odometer</p>
+                    <input type="text" value="{{Odometer}}" name="Odometer" id="Odometer" placeholder="Odometer in Miles">                    
+                </div>
+
+                <div class="form_fields">   
+                    <button type="submit">Submit</button>   
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- script for condition -->
+<script>
+    
+    var  list_of_Condition=['Like new', 'good', 'Excellent', 'Fair', 'new', 'salvage'	];
+    var icon_flag1=0;
+    var ConditionInputBox=document.getElementById('Condition');
+    var ConditionSuggection=document.querySelector('.Condition_suggection');
+    var ConditionSuggectionList=ConditionSuggection.querySelector('ul')
+    var iconCon=document.getElementById('iconCon');
+
+    function updateCondition(selected_Condition)
+  {
+     document.getElementById('Condition').value=selected_Condition.innerText;
+     ConditionSuggection.classList.remove('active')
+     iconCon.style.transform="rotate(0deg)";
+     icon_fla1g=0;
+  }
+
+
+    ConditionInputBox.addEventListener('click',() =>{
+                 ConditionSuggection.classList.toggle('active')
+                 if(icon_flag1==1)
+                   {iconCon.style.transform="rotate(0deg)";
+                     icon_flag1=0;
+                   }
+                else
+                 {icon_flag1=1;
+                       iconCon.style.transform="rotate(-180deg)";}
+                       ConditionSuggectionList.innerHTML=""
+                 arr=[];
+                 arr=list_of_Condition.forEach(element => {
+                 li="<li onclick=updateCondition(this)>"+element+"</li>";
+                 ConditionSuggectionList.insertAdjacentHTML("beforeend",li)            
+                 })
+
+
+     })
+
+ 
+    
+ </script>
+
+<!-- script for fuel Type -->
+<script>
+    
+    var  list_of_fuel=['gas', 'diesel', 'electric', 'hybrid', 'other'];
+    var icon_flag=0;
+ 
+  var fuelInputBox=document.getElementById('Fuel');
+  var fuelSuggection=document.querySelector('.Fuel_suggection');
+  var fuelSuggectionList=fuelSuggection.querySelector('ul')
+  var icon=document.getElementById('icon');
+ 
+  function updateFuel(selected_model)
+  {
+     document.getElementById('Fuel').value=selected_model.innerText;
+     fuelSuggection.classList.remove('active')
+     icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+  }
+ 
+ 
+
+ 
+  fuelInputBox.addEventListener('click',() =>{
+    fuelSuggection.classList.toggle('active')
+    if(icon_flag==1)
+    {icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+     }
+    else
+      {icon_flag=1;
+        icon.style.transform="rotate(-180deg)";}
+    fuelSuggectionList.innerHTML=""
+     arr=[];
+     arr=list_of_fuel.forEach(element => {
+     li="<li onclick=updateFuel(this)>"+element+"</li>";
+     fuelSuggectionList.insertAdjacentHTML("beforeend",li)            
+     })
+ })
+ 
+ </script>
+
+<!-- script for car Type -->
+<script>
+    
+   var  list_of_Type=['offroad', 'sedan', 'pickup', 'convertible', 'van', 'truck', 'SUV',
+       'coupe', 'hatchback', 'mini-van', 'wagon', 'other', 'bus'];
+
+ var typeInputBox=document.getElementById('Type');
+ var typeSuggection=document.querySelector('.Type_suggection');
+ var typeSuggectionList=typeSuggection.querySelector('ul')
+
+
+ function updateType(selected_model)
+ {
+    document.getElementById('Type').value=selected_model.innerText;
+    typeSuggection.classList.remove('active')
+ }
+
+
+ typeInputBox.addEventListener('keyup',()=>{
+    typeSuggection.classList.remove('active');
+    typeSuggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=typeInputBox.value.toLowerCase();
+           arr=list_of_Type.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="updateType(this)">'+data+'</li>').join("");
+                typeSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+ });
+
+ typeInputBox.addEventListener('click',() =>{
+    typeSuggection.classList.toggle('active')
+    arr=[];
+    arr=list_of_Type.forEach(element => {
+    li="<li onclick=updateType(this)>"+element+"</li>";
+    typeSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for the Model -->
+<script>
+
+    
+   var  list_of_model=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+
+ var modelInputBox=document.getElementById('Model');
+ var modelSuggection=document.querySelector('.model_suggection');
+ var modelSuggectionList=modelSuggection.querySelector('ul')
+
+
+ function updateModel(selected_model)
+ {
+    document.getElementById('Model').value=selected_model.innerText;
+    modelSuggection.classList.remove('active')
+ }
+
+
+ modelInputBox.addEventListener('keyup',()=>{
+    modelSuggection.classList.remove('active');
+    modelSuggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=modelInputBox.value.toLowerCase();
+           arr=list_of_model.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="updateModel(this)">'+data+'</li>').join("");
+            modelSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+ });
+
+modelInputBox.addEventListener('click',() =>{
+    modelSuggection.classList.toggle('active')
+    arr=[];
+    arr=list_of_model.forEach(element => {
+    li="<li onclick=updateModel(this)>"+element+"</li>";
+    modelSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for  the manufacturer -->
+<script>
+   
+
+   var  list_of_make=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+
+       const make_inputBx =document.querySelector('.Manufacturer');
+       const make_suggection=document.querySelector('.Make_suggection');
+       const make_suggection_list=make_suggection.querySelector('ul');
+       make_suggection.classList.remove('active');
+
+   
+    
+
+
+        function showSuggection(make){
+            make_inputBx.value=make.innerText;
+            make_suggection.classList.remove('active');
+        }
+
+        make_inputBx.addEventListener('keyup',()=>{
+
+          make_suggection.classList.remove('active');
+          make_suggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=make_inputBx.value.toLowerCase();
+           arr=list_of_make.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="showSuggection(this)">'+data+'</li>').join("");
+            make_suggection_list.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+           })
+
+          
+        // modelSuggection.classList.toggle('active');
+    
+
+       make_inputBx.addEventListener('click',() => {
+        
+         make_suggection.classList.toggle('active');
+         arr=[];
+         arr=list_of_make.forEach(element => {
+            li="<li onclick=showSuggection(this)>"+element+"</li>";
+            make_suggection_list.insertAdjacentHTML("beforeend",li)            
+         });
+        //  console.log(arr);
+
+       })
+
+   
+       
+    // scripts for tha Model
+      
+
+</script>
+
+
+
+
+
+
+
+{% endblock %}

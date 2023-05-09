@@ -1,0 +1,384 @@
+.selling_Page_container
+{
+    min-height: 90vh;
+}
+.selling_Page_container .page_container{
+    display: flex;
+    align-items: center;
+    padding: 50px 100px 8%;
+}
+.selling_Page_container .page_container .hero_section{
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    padding-bottom: 160px;
+    /* margin-left: 30px; */
+    padding-left: 30px;
+}
+
+.page_container .hero_section h3 h1 p img{
+    text-align: left;
+}
+.page_container .hero_section h3 
+{
+    font-size: 2em;
+    
+    margin-bottom: 20px;
+}
+.page_container .hero_section h1{
+    font-size: 3em;
+    color: #d90429;
+    /* margin-top: 10px; */
+}
+.page_container .hero_section p{
+    color: #727272;
+    font-size: 1em;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: left;
+}
+.page_container .hero_section img
+{
+    margin-top: 50px;
+    padding-left: 0px;
+    width: 500px;
+}
+
+.selling_Page_container .page_container .selling_form{
+    border-radius: 5px;
+    box-shadow: 0 0 7px 2px rgba(0,0,0,.23);
+    -webkit-box-shadow: 0 0 7px 2px rgba(0,0,0,.23);
+    -moz-box-shadow: 0 0 7px 2px rgba(0,0,0,.23);
+    margin-left: 100px;
+    padding: 30px;
+    width: 600px;
+}
+
+.selling_Page_container .page_container .selling_form .sell_form_container{
+    margin: 0;
+    padding: 0;
+
+}
+/* .selling_form .sell_form_container .form_fields{
+    position: relative;
+} */
+.sell_form_container .form_fields  p{
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 20px 0 5px;
+    text-align: left;
+}
+
+
+.sell_form_container .form_fields input{
+    border: 1px solid #72727298;
+    border-radius: 5px;
+    font-weight: 600;
+    outline: none;
+    padding: 10px;
+    resize: none;
+    width: 96%;
+}
+
+.sell_form_container .form_fields button{
+background: transparent;
+    background: linear-gradient(140deg,#d90429,#db3954 80%);
+    border: none;
+    border-radius: 5px;
+    color: #fdfdfd;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 30px;
+    padding: 10px 25px;
+    width: 100%;
+}
+
+/* Manufacturer Section  */
+.sell_form_container .form_fields .Make_suggection{
+    position: absolute;
+    /* top: 60px; */
+    width: 34%;
+    border-radius:5px ;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #72727298;
+    display: none;
+
+
+
+
+}
+.sell_form_container .form_fields .Make_suggection.active{
+    display: block; 
+}
+.sell_form_container .form_fields .Make_suggection ul{
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 20px;
+
+}
+.sell_form_container .form_fields .Make_suggection li{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+    /* padding-top: 5px; */
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sell_form_container .form_fields .Make_suggection li:hover{
+    background:#f2f2f2 ;
+    width: 90%;
+}
+
+.sell_form_container .form_fields .Make_suggection ul::-webkit-scrollbar{
+    width: 7px;
+}
+
+.sell_form_container .form_fields .Make_suggection ul::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.sell_form_container .form_fields .Make_suggection ul::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+
+
+
+
+/* Model Section  */
+.sell_form_container .form_fields .model_suggection{
+    position: absolute;
+    /* top: 60px; */
+    width: 34%;
+    border-radius:5px ;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #72727298;
+    display: none;
+
+
+
+
+}
+.sell_form_container .form_fields .model_suggection.active{
+    display: block; 
+}
+.sell_form_container .form_fields .model_suggection ul{
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 20px;
+
+}
+.sell_form_container .form_fields .model_suggection li{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+    /* padding-top: 5px; */
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sell_form_container .form_fields .model_suggection li:hover{
+    background:#f2f2f2 ;
+    width: 90%;
+}
+
+.sell_form_container .form_fields .model_suggection ul::-webkit-scrollbar{
+    width: 7px;
+}
+
+.sell_form_container .form_fields .model_suggection ul::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.sell_form_container .form_fields .model_suggection ul::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+
+/* Type Section  */
+.sell_form_container .form_fields .Type_suggection{
+    position: absolute;
+    /* top: 60px; */
+    width: 34%;
+    border-radius:5px ;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #72727298;
+    display: none;
+
+
+
+
+}
+.sell_form_container .form_fields .Type_suggection.active{
+    display: block; 
+}
+.sell_form_container .form_fields .Type_suggection ul{
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 20px;
+
+}
+.sell_form_container .form_fields .Type_suggection li{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+    /* padding-top: 5px; */
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.sell_form_container .form_fields .Type_suggection li:hover{
+    background:#f2f2f2 ;
+    width: 90%;
+}
+
+.sell_form_container .form_fields .Type_suggection ul::-webkit-scrollbar{
+    width: 7px;
+}
+
+.sell_form_container .form_fields .Type_suggection ul::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.sell_form_container .form_fields .Type_suggection ul::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+
+/* fuel Section  */
+.sell_form_container .form_fields i{
+    position: absolute;
+    left: 0;
+    margin-left: 1260px;
+    margin-top: 5px;
+    color: #333;
+    font-size: 30px;
+}
+
+
+.sell_form_container .form_fields .Fuel_suggection{
+    position: absolute;
+    /* top: 60px; */
+    width: 34%;
+    border-radius:5px ;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #72727298;
+    display: none;
+}
+.sell_form_container .form_fields .Fuel_suggection.active{
+    display: block; 
+}
+.sell_form_container .form_fields .Fuel_suggection ul{
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 20px;
+
+}
+.sell_form_container .form_fields .Fuel_suggection li{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+    /* padding-top: 5px; */
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sell_form_container .form_fields .Fuel_suggection li:hover{
+    background:#f2f2f2 ;
+    width: 90%;
+}
+
+.sell_form_container .form_fields .Fuel_suggection ul::-webkit-scrollbar{
+    width: 7px;
+}
+
+.sell_form_container .form_fields .Fuel_suggection ul::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.sell_form_container .form_fields .Fuel_suggection ul::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}
+
+/* condition Section  */
+
+
+.sell_form_container .form_fields .Condition_suggection{
+    position: absolute;
+    /* top: 60px; */
+    width: 34%;
+    border-radius:5px ;
+    background: #fff;
+    margin-top: 5px;
+    border: 1px solid #72727298;
+    display: none;
+}
+.sell_form_container .form_fields .Condition_suggection.active{
+    display: block; 
+}
+.sell_form_container .form_fields .Condition_suggection ul{
+    width: 95%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-left: 20px;
+
+}
+.sell_form_container .form_fields .Condition_suggection li{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    
+    /* padding-top: 5px; */
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sell_form_container .form_fields .Condition_suggection li:hover{
+    background:#f2f2f2 ;
+    width: 90%;
+}
+
+.sell_form_container .form_fields .Condition_suggection ul::-webkit-scrollbar{
+    width: 7px;
+}
+
+.sell_form_container .form_fields .Condition_suggection ul::-webkit-scrollbar-track{
+    background: #f1f1f1;
+    border-radius: 25px;
+}
+
+.sell_form_container .form_fields .Condition_suggection ul::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 25px;
+}

@@ -26,12 +26,45 @@ def buy(request):
                }
         return render(request,'price.html',param)
     elif request.method == 'GET':
+
         
         return render(request,'price_init.html')
 
-def sellingPrice(request):
-    return HttpResponse("It Is selling Price")
 
+
+def sellingPrice(request):
+    if request.method == 'POST':
+        Manufacturer=request.POST.get('Manufacturer')    
+        Model=request.POST.get('Model')    
+        Type=request.POST.get('Type') 
+        Year=request.POST.get('Year') 
+        Fuel=request.POST.get('Fuel') 
+        Condition=request.POST.get('Condition') 
+        Odometer=request.POST.get('Odometer') 
+        context={ 'Manufacturer':Manufacturer,    
+                'Model':Model,  
+                'Type':Type,
+                'Year':Year,
+                "Fuel":Fuel,
+                'Condition':Condition,
+                 "Odometer":Odometer}
+        return render(request,'sell.html',context)
+           
+        # return HttpResponse(Year)
+    elif request.method == 'GET':
+       context={ 'Manufacturer':"",    
+                'Model':"" ,  
+                'Type':"",
+                'Year':"",
+                "Fuel":"",
+                'Condition':"",
+                 "Odometer":""}
+       return render(request,'sell.html',context)
+    
+    
+    
+    return render(request,'sell.html')
+    
 
 def firstModel(request):
     return HttpResponse("It Is Model 1")
