@@ -252,7 +252,6 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
 
 def sellingPrice(request):
     if request.method == 'POST':
-<<<<<<< HEAD
         Manufacturer = request.POST.get('Manufacturer')
         Model = request.POST.get('Model')
         Type = request.POST.get('Type')
@@ -270,7 +269,7 @@ def sellingPrice(request):
         return render(request, 'sell.html', context)
         # price = modelresell(torque, power, mileage,
         #                     manufacturer, fuel, transmission)
-=======
+
         Manufacturer=request.POST.get('Manufacturer')    
         Model=request.POST.get('Model')    
         Type=request.POST.get('Type') 
@@ -289,7 +288,6 @@ def sellingPrice(request):
                  "Price":Price}
         return render(request,'sell.html',context)
            
->>>>>>> 8c5c82cd23ae310e2b6056688fb102f721e265bd
         # return HttpResponse(Year)
     elif request.method == 'GET':
         context = {'Manufacturer': "",
@@ -411,8 +409,8 @@ def modelPrice(Price, Seating_Capacity, Mileage, Fuel_Type, Body_Type):
     #              }
     # print(param)
 
-    user_input = np.concatenate(
-        ([torque, power, mileage], t_make, t_fuel, t_trans))
+    # user_input = np.concatenate(
+    #     ([torque, power, mileage], t_make, t_fuel, t_trans))
 
     # Reshape the input vector to have shape (1, n_features)
     user_input = user_input.reshape(1, -1)
