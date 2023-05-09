@@ -87,17 +87,19 @@ def sellingPrice(request):
         Manufacturer=request.POST.get('Manufacturer')    
         Model=request.POST.get('Model')    
         Type=request.POST.get('Type') 
-        Year=request.POST.get('Year') 
+        Year= (request.POST.get('Year')).split('-')[0]    #do int parsing here    
         Fuel=request.POST.get('Fuel') 
         Condition=request.POST.get('Condition') 
-        Odometer=request.POST.get('Odometer') 
+        Odometer= request.POST.get('Odometer')   #do int parsing here
+        Price=100
         context={ 'Manufacturer':Manufacturer,    
                 'Model':Model,  
                 'Type':Type,
                 'Year':Year,
                 "Fuel":Fuel,
                 'Condition':Condition,
-                 "Odometer":Odometer}
+                 "Odometer":Odometer,
+                 "Price":Price}
         return render(request,'sell.html',context)
            
         # return HttpResponse(Year)
