@@ -45,7 +45,7 @@ Selling Price
                  <!-- car type -->
                 <div class="form_fields">
                     <p>Car Type</p>
-                    <input type="text" value="{{Type}}" id="Type" name="Type" placeholder="Type"> 
+                    <input type="text" value="{{Type}}" id="Type" name="Type" placeholder="Type" autocomplete="off"> 
                     <div class="Type_suggection">
                         <ul>                           
                         </ul>
@@ -136,7 +136,8 @@ Selling Price
  
     
  </script>
-
+ {% load static %}
+<script src="{% static 'js/model.js' %}"></script>
 <!-- script for fuel Type -->
 <script>
     
@@ -223,13 +224,13 @@ Selling Price
 <script>
 
     
-   var  list_of_model=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
-       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
-       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
-       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
-       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
-       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
-       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+//    var  list_of_model=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+//        'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+//        'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+//        'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+//        'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+//        'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+//        'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
 
  var modelInputBox=document.getElementById('Model');
  var modelSuggection=document.querySelector('.model_suggection');
