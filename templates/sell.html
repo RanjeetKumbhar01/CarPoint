@@ -14,8 +14,8 @@ Selling Price
 <section class="selling_Page_container">
     <div class="page_container">
         <div class="hero_section">
-            <h3>Find</h3>
-            <h1>Selling Price</h1>
+            <h3>{% if Price %} Selling Price is {% else %} {{Price}} {% endif %}</h3>
+            <h1> {% if Price %} {{Price}} {% else %} Selling Price {% endif %}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
             <img src="../static/image/car sell.png" alt="sell price image">
         </div>

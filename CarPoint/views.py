@@ -252,6 +252,7 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
 
 def sellingPrice(request):
     if request.method == 'POST':
+<<<<<<< HEAD
         Manufacturer = request.POST.get('Manufacturer')
         Model = request.POST.get('Model')
         Type = request.POST.get('Type')
@@ -269,6 +270,26 @@ def sellingPrice(request):
         return render(request, 'sell.html', context)
         # price = modelresell(torque, power, mileage,
         #                     manufacturer, fuel, transmission)
+=======
+        Manufacturer=request.POST.get('Manufacturer')    
+        Model=request.POST.get('Model')    
+        Type=request.POST.get('Type') 
+        Year= (request.POST.get('Year')).split('-')[0]    #do int parsing here    
+        Fuel=request.POST.get('Fuel') 
+        Condition=request.POST.get('Condition') 
+        Odometer= request.POST.get('Odometer')   #do int parsing here
+        Price=100
+        context={ 'Manufacturer':Manufacturer,    
+                'Model':Model,  
+                'Type':Type,
+                'Year':Year,
+                "Fuel":Fuel,
+                'Condition':Condition,
+                 "Odometer":Odometer,
+                 "Price":Price}
+        return render(request,'sell.html',context)
+           
+>>>>>>> 8c5c82cd23ae310e2b6056688fb102f721e265bd
         # return HttpResponse(Year)
     elif request.method == 'GET':
         context = {'Manufacturer': "",
