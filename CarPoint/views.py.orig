@@ -1,15 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
+<<<<<<< HEAD
 from sklearn.preprocessing import StandardScaler
 import pickle
 import numpy as np
+=======
 
+>>>>>>> 509758ffdb0c0bf360ac7b9c4699eccdd007e78c
 
 def index(request):
     return render(request,'index.html')
 
 def buyingPrice(request):
     return render(request,'price.html')
+<<<<<<< HEAD
 
 def getMakeList_ModelPrice():
     make = ['Audi', 'Bajaj', 'Bmw', 'Datsun', 'Dc', 'Fiat',
@@ -73,48 +77,33 @@ def buy(request):
                'Price':price,
                }
         print(param)
-
+=======
+def buy(request):
+    if request.method == 'POST':
+        tourque=request.POST.get('Torque')
+        Power=request.POST.get('Power')
+        Mileage=request.POST.get('Mileage')
+        Manufacturer=request.POST.get('Manufacturer')
+        Transmission=request.POST.get('Transmission')
+        Fuel=request.POST.get('Fuel')
+        
+        param={'Torque':tourque,
+               "Power":Power,
+               'Mileage':Mileage,               
+               'Manufacturer':Manufacturer,
+               'Transmission':Transmission,
+               'Fuel':Fuel,
+               'Price':100,
+               }
+>>>>>>> 509758ffdb0c0bf360ac7b9c4699eccdd007e78c
         return render(request,'price.html',param)
     elif request.method == 'GET':
-
         
         return render(request,'price_init.html')
 
-
-
 def sellingPrice(request):
-    if request.method == 'POST':
-        Manufacturer=request.POST.get('Manufacturer')    
-        Model=request.POST.get('Model')    
-        Type=request.POST.get('Type') 
-        Year=request.POST.get('Year') 
-        Fuel=request.POST.get('Fuel') 
-        Condition=request.POST.get('Condition') 
-        Odometer=request.POST.get('Odometer') 
-        context={ 'Manufacturer':Manufacturer,    
-                'Model':Model,  
-                'Type':Type,
-                'Year':Year,
-                "Fuel":Fuel,
-                'Condition':Condition,
-                 "Odometer":Odometer}
-        return render(request,'sell.html',context)
-           
-        # return HttpResponse(Year)
-    elif request.method == 'GET':
-       context={ 'Manufacturer':"",    
-                'Model':"" ,  
-                'Type':"",
-                'Year':"",
-                "Fuel":"",
-                'Condition':"",
-                 "Odometer":""}
-       return render(request,'sell.html',context)
-    
-    
-    
-    return render(request,'sell.html')
-    
+    return HttpResponse("It Is selling Price")
+
 
 def firstModel(request):
     return HttpResponse("It Is Model 1")
