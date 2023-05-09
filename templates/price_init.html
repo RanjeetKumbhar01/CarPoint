@@ -17,17 +17,22 @@ Know Price
             
             <h1><span>find</span><br>Buying Price</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quod eaque nu</p>
-            <img src="../static/image/buy-car.png">
+            <img src="../static/image/car sell.png">
           </div>
           <div class="form">
           <form class="form-container" id="post_form" action="/buy" method="post" onsubmit="return validateForm()" >
               {% csrf_token %}
 
                <!-- Manufacturer -->   
-              <div class="inputBox">          
-                <input type="text" value="" name="Manufacturer" id="Manufacturer" required="required">
+              <div class="inputBox wrapper_make">          
+                <input type="text" value="" name="Manufacturer" id="Manufacturer" required="required" autocomplete="off">
                 <span >Manufacturer</span>   
-                <p id="Manufacturer_span"></p>      
+                <p id="Manufacturer_span"></p>  
+                <div class="make_suggection ">
+                    <ul>
+                        
+                    </ul>
+                </div>    
             </div>
 
              <!-- Transmission -->
@@ -38,10 +43,7 @@ Know Price
                 <p id="Transmission_span"></p>
                 <div class="trans-list">
                     <ul class="trans_options">
-                      <li>hellow</li>
-                      <li>hellow</li>
-                      <li>hellow</li>
-                      <li>hellow</li>
+                      
                     </ul>
                 </div>         
                 </div>  
@@ -217,4 +219,62 @@ Know Price
     });
 
     </script>
+
+
+<!-- scrip for make -->
+<script>
+    
+   var  list_of_make=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+
+       const make_inputBx =document.getElementById('Manufacturer');
+       const make_suggection=document.querySelector('.wrapper_make');
+       const make_suggection_list=make_suggection.querySelector('ul');
+       make_suggection.classList.remove('active');
+
+   
+    
+
+
+        function showSuggection(make){
+            make_inputBx.value=make.innerText;
+            make_suggection.classList.remove('active');
+        }
+
+        make_inputBx.addEventListener('keyup',()=>{
+
+          make_suggection.classList.remove('active');
+          make_suggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=make_inputBx.value.toLowerCase();
+           arr=list_of_make.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="showSuggection(this)">'+data+'</li>').join("");
+            make_suggection_list.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+           })
+
+          
+        // modelSuggection.classList.toggle('active');
+    
+
+       make_inputBx.addEventListener('click',() => {        
+        
+         make_suggection.classList.toggle('active');
+         arr=[];
+         arr=list_of_make.forEach(element => {
+            li="<li onclick=showSuggection(this)>"+element+"</li>";
+            make_suggection_list.insertAdjacentHTML("beforeend",li)            
+         });
+        //  console.log(arr);
+
+       })
+
+   
+</script>
     {% endblock %}
