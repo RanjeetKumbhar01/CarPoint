@@ -24,24 +24,26 @@ Know Price
               {% csrf_token %}
 
                <!-- Manufacturer -->   
-              <div class="inputBox">          
-                <input type="text" value={{Manufacturer}} name="Manufacturer" id="Manufacturer" required="required">
+              <div class="inputBox wrapper_make">          
+                <input type="text" value="{{Manufacturer}}" name="Manufacturer" id="Manufacturer" required="required" autocomplete="off">
                 <span >Manufacturer</span>   
-                <p id="Manufacturer_span"></p>      
+                <p id="Manufacturer_span"></p>  
+                <div class="make_suggection ">
+                    <ul>
+                        
+                    </ul>
+                </div>    
             </div>
 
              <!-- Transmission -->
              <div class="inputBox wrapper_trans">          
-                <input type="text" value={{Transmission}} name="Transmission" id="Transmission" required="required" style="caret-color: transparent;" onkeydown="return false"; autocomplete="off">
+                <input type="text" value="{{Transmission}}" name="Transmission" id="Transmission" required="required" style="caret-color: transparent;" onkeydown="return false"; autocomplete="off">
                 <span >Transmission</span>   
                 <div class="icon"><i class='bx bx-chevron-down'></i></div> 
                 <p id="Transmission_span"></p>
                 <div class="trans-list">
                     <ul class="trans_options">
-                      <!-- <li>hellow</li>
-                      <li>hellow</li>
-                      <li>hellow</li>
-                      <li>hellow</li> -->
+                      
                     </ul>
                 </div>         
                 </div>  
@@ -49,7 +51,7 @@ Know Price
                 
               <!-- Fuel -->
                 <div class="inputBox wrapper">          
-                <input type="text" value={{Fuel}} name="Fuel" id="Fuel" required="required"  style="caret-color: transparent;" onkeydown="return false" autocomplete="off">
+                <input type="text" value="{{Fuel}}" name="Fuel" id="Fuel" required="required"  style="caret-color: transparent;" onkeydown="return false" autocomplete="off">
                 <span >Fuel</span>   
                 <div class="icon"><i class='bx bx-chevron-down'></i></div> 
                 <p id="Manufacturer_span"></p>  
@@ -63,21 +65,21 @@ Know Price
             
                 <!-- Mileage -->
              <div class="inputBox">             
-                <input type="text" value={{Mileage}} name="Mileage" id="Mileage" onblur="validateFields(this)" required="required">
+                <input type="text" value="{{Mileage}}" name="Mileage" id="Mileage" onblur="validateFields(this)" required="required">
                 <span >Mileage</span>
                 <p id="Mileage_span"></p>             
                </div>
 
                <!--Torque  -->
               <div class="inputBox">                   
-               <input type="text" value={{Torque}} name="Torque" id="Torque" onblur="validateFields(this)" required="required">
+               <input type="text" value="{{Torque}}"  name="Torque" id="Torque" onblur="validateFields(this)" required="required">
                <span>Torque</span>
               <p id="Torque_span"></p>              
               </div>
       
               <!-- Power -->
              <div class="inputBox">             
-              <input type="text" value={{Power}} name="Power" id="Power" onblur="validateFields(this)" required="required">
+              <input type="text" value="{{Power}}" name="Power" id="Power" onblur="validateFields(this)" required="required">
               <span>Power</span>
               <p id="Power_span"></p>              
              </div>
@@ -217,4 +219,62 @@ Know Price
     });
 
     </script>
+
+
+<!-- scrip for make -->
+<script>
+    
+   var  list_of_make=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+
+       const make_inputBx =document.getElementById('Manufacturer');
+       const make_suggection=document.querySelector('.wrapper_make');
+       const make_suggection_list=make_suggection.querySelector('ul');
+       make_suggection.classList.remove('active');
+
+   
+    
+
+
+        function showSuggection(make){
+            make_inputBx.value=make.innerText;
+            make_suggection.classList.remove('active');
+        }
+
+        make_inputBx.addEventListener('keyup',()=>{
+
+          make_suggection.classList.remove('active');
+          make_suggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=make_inputBx.value.toLowerCase();
+           arr=list_of_make.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="showSuggection(this)">'+data+'</li>').join("");
+            make_suggection_list.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+           })
+
+          
+        // modelSuggection.classList.toggle('active');
+    
+
+       make_inputBx.addEventListener('click',() => {        
+        
+         make_suggection.classList.toggle('active');
+         arr=[];
+         arr=list_of_make.forEach(element => {
+            li="<li onclick=showSuggection(this)>"+element+"</li>";
+            make_suggection_list.insertAdjacentHTML("beforeend",li)            
+         });
+        //  console.log(arr);
+
+       })
+
+   
+</script>
     {% endblock %}
