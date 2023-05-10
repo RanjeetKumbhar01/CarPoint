@@ -14,6 +14,7 @@ Best Model
 <section class="selling_Page_container">
     <div class="page_container">
         <div class="hero_section">
+
             <h3>{% if Model %} Your Dreem Model{% else %} Find {% endif %}</h3>
             <h1> {% if Model %} {{Model}} {% else %} Best Model{% endif %}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
@@ -27,12 +28,12 @@ Best Model
                  <!-- Price Range -->
                  <div class="form_fields">
                     <p>Price Range</p>
-                    <input type="text" value="{{Price}}" id="Price" name="Price" placeholder="Price Range" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
-                    <i  id='icon' class='bx bx-chevron-down'></i>
-                    <div class="Price_suggection">
+                    <input type="text" value="{{Price}}" id="Price" name="Price" placeholder="Price Range" >
+                    {% comment %} <i  id='icon' class='bx bx-chevron-down'></i> {% endcomment %}
+                    {% comment %} <div class="Price_suggection">
                         <ul>                           
                         </ul>
-                    </div>                      
+                    </div>                       {% endcomment %}
                 </div>
 
                   <!-- Fuel TYpe -->
@@ -134,7 +135,7 @@ Best Model
 
 
 <!-- script for Price Type -->
-<script>
+{% comment %} <script>
     
     var  list_of_Price=['1 Lack to 5 Lack','5 Lack to 10 Lack','10 Lack to 20 Lack','20 Lack to 30 Lack','30 Lack to 40 Lack','40 Lack to 50 Lack','1CR to 3Cr'];
     var icon_flag=0;
@@ -172,7 +173,7 @@ Best Model
      })
  })
  
- </script>
+ </script> {% endcomment %}
 
 <!-- script for car Type -->
 <script>
