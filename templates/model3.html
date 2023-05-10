@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     
+<link rel="stylesheet" type="text/css" href="{% static 'form_css/model1.css' %}"/>
+{% endblock %}
+{% block title %}
+Selling Price
+{% endblock %}
+
+{% block body %}
+
+<section class="selling_Page_container">
+    <div class="page_container">
+        <div class="hero_section">
+            <h3>{% if Model %} Your Dreem Model{% else %} Find {% endif %}</h3>
+            <h1> {% if Model %} {{Model}} {% else %} Fuel Economy Model{% endif %}</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
+            <img src="../static/image/car sell.png" alt="sell price image">
+        </div>
+
+        <div class="selling_form" style="margin-bottom: 100px;">
+            <form class="sell_form_container" action="" method="post" >
+                {% csrf_token %}
+                  <!-- Mileage -->
+                  <div class="form_fields">
+                    <p>Mileage</p>
+                    <input type="text" value="{{Mileage}}" name="Mileage" id="Mileage" placeholder="Mileage in Miles">                    
+                </div>
+
+                 <!-- Price Range -->
+                 <div class="form_fields">
+                    <p>Price Range</p>
+                    <input type="text" value="{{Price}}" id="Price" name="Price" placeholder="Price Range" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
+                    <i  id='icon' class='bx bx-chevron-down'></i>
+                    <div class="Price_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                      
+                </div>
+
+                  <!-- Fuel TYpe -->
+                  <div class="form_fields">
+                    <p>Fuel type</p>
+                    <input type="text" id="Fuel" value="{{Fuel}}"  name="Fuel" placeholder="Fuel" autocomplete="off"> 
+                    <div class="Fuel_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                     
+                </div>        
+             
+               
+               <div class="form_fields">   
+                    <button type="submit">Submit</button>   
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- script for Seat -->
+<script>
+    
+    var  list_of_Seat=[ 4,  5,  7,  2,  6,  9,  8, 16];
+    var icon_flag1=0;
+    var SeatInputBox=document.getElementById('Seat');
+    var SeatSuggection=document.querySelector('.Seat_suggection');
+    var SeatSuggectionList=SeatSuggection.querySelector('ul')
+    var iconCon=document.getElementById('iconCon');
+
+    function updateSeat(selected_Seat)
+  {
+     document.getElementById('Seat').value=selected_Seat.innerText;
+     SeatSuggection.classList.remove('active')
+     iconCon.style.transform="rotate(0deg)";
+     icon_fla1g=0;
+  }
+
+
+    SeatInputBox.addEventListener('click',() =>{
+                 SeatSuggection.classList.toggle('active')
+                 if(icon_flag1==1)
+                   {iconCon.style.transform="rotate(0deg)";
+                     icon_flag1=0;
+                   }
+                else
+                 {icon_flag1=1;
+                       iconCon.style.transform="rotate(-180deg)";}
+                       SeatSuggectionList.innerHTML=""
+                 arr=[];
+                 arr=list_of_Seat.forEach(element => {
+                 li="<li onclick=updateSeat(this)>"+element+"</li>";
+                 SeatSuggectionList.insertAdjacentHTML("beforeend",li)            
+                 })
+
+
+     })
+
+ 
+    
+ </script>
+
+
+<!-- script for Price Type -->
+<script>
+    
+    var  list_of_Price=['1 Lack to 5 Lack','5 Lack to 10 Lack','10 Lack to 20 Lack','20 Lack to 30 Lack','30 Lack to 40 Lack','40 Lack to 50 Lack','1CR to 3Cr'];
+    var icon_flag=0;
+ 
+  var PriceInputBox=document.getElementById('Price');
+  var PriceSuggection=document.querySelector('.Price_suggection');
+  var PriceSuggectionList=PriceSuggection.querySelector('ul')
+  var icon=document.getElementById('icon');
+ 
+  function updatePrice(selected_Fuel)
+  {
+     document.getElementById('Price').value=selected_Fuel.innerText;
+     PriceSuggection.classList.remove('active')
+     icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+  }
+ 
+ 
+
+ 
+  PriceInputBox.addEventListener('click',() =>{
+    PriceSuggection.classList.toggle('active')
+    if(icon_flag==1)
+    {icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+     }
+    else
+      {icon_flag=1;
+        icon.style.transform="rotate(-180deg)";}
+    PriceSuggectionList.innerHTML=""
+     arr=[];
+     arr=list_of_Price.forEach(element => {
+     li="<li onclick=updatePrice(this)>"+element+"</li>";
+     PriceSuggectionList.insertAdjacentHTML("beforeend",li)            
+     })
+ })
+ 
+ </script>
+
+<!-- script for car Type -->
+<script>
+    
+   var  list_of_Type=['Hatchback', 'MPV', 'MUV', 'SUV', 'Sedan', 'Crossover', 'Coupe',
+                        'Convertible', 'Sports', 'Pick-up' ];
+
+ var typeInputBox=document.getElementById('Type');
+ var typeSuggection=document.querySelector('.Type_suggection');
+ var typeSuggectionList=typeSuggection.querySelector('ul')
+
+
+ function updateType(selected_Fuel)
+ {
+    document.getElementById('Type').value=selected_Fuel.innerText;
+    typeSuggection.classList.remove('active')
+ }
+
+
+ typeInputBox.addEventListener('keyup',()=>{
+    typeSuggection.classList.remove('active');
+    typeSuggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=typeInputBox.value.toLowerCase();
+           arr=list_of_Type.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="updateType(this)">'+data+'</li>').join("");
+                typeSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+ });
+
+ typeInputBox.addEventListener('click',() =>{
+    typeSuggection.classList.toggle('active')
+    arr=[];
+    arr=list_of_Type.forEach(element => {
+    li="<li onclick=updateType(this)>"+element+"</li>";
+    typeSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for the Fuel -->
+<script>
+
+    
+   var  list_of_Fuel=['Petrol', 'CNG', 'Diesel', 'CNG + Petrol', 'Hybrid', 'Electric'];
+
+ var FuelInputBox=document.getElementById('Fuel');
+ var FuelSuggection=document.querySelector('.Fuel_suggection');
+ var FuelSuggectionList=FuelSuggection.querySelector('ul')
+
+
+ function updateFuel(selected_Fuel)
+ {
+    document.getElementById('Fuel').value=selected_Fuel.innerText;
+    FuelSuggection.classList.remove('active')
+ }
+
+
+ FuelInputBox.addEventListener('keyup',()=>{
+    FuelSuggection.classList.remove('active');
+    FuelSuggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=FuelInputBox.value.toLowerCase();
+           arr=list_of_Fuel.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="updateFuel(this)">'+data+'</li>').join("");
+            FuelSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+ });
+
+FuelInputBox.addEventListener('click',() =>{
+    FuelSuggection.classList.toggle('active')
+    arr=[];
+    arr=list_of_Fuel.forEach(element => {
+    li="<li onclick=updateFuel(this)>"+element+"</li>";
+    FuelSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for  the manufacturer -->
+<script>
+   
+
+   var  list_of_make=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
+       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
+       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
+       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
+       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
+       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
+       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+
+       const make_inputBx =document.querySelector('.Manufacturer');
+       const make_suggection=document.querySelector('.Make_suggection');
+       const make_suggection_list=make_suggection.querySelector('ul');
+       make_suggection.classList.remove('active');
+
+   
+    
+
+
+        function showSuggection(make){
+            make_inputBx.value=make.innerText;
+            make_suggection.classList.remove('active');
+        }
+
+        make_inputBx.addEventListener('keyup',()=>{
+
+          make_suggection.classList.remove('active');
+          make_suggection.classList.toggle('active');
+          let arr=[];
+          let SearchVal=make_inputBx.value.toLowerCase();
+           arr=list_of_make.filter(data =>{
+                     return data.toLocaleLowerCase().startsWith(SearchVal);
+                }).map(data => '<li onclick="showSuggection(this)">'+data+'</li>').join("");
+            make_suggection_list.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
+
+           })
+
+          
+        // FuelSuggection.classList.toggle('active');
+    
+
+       make_inputBx.addEventListener('click',() => {
+        
+         make_suggection.classList.toggle('active');
+         arr=[];
+         arr=list_of_make.forEach(element => {
+            li="<li onclick=showSuggection(this)>"+element+"</li>";
+            make_suggection_list.insertAdjacentHTML("beforeend",li)            
+         });
+        //  console.log(arr);
+
+       })
+
+   
+       
+    // scripts for tha Fuel
+      
+
+</script>
+
+
+
+
+
+
+
+{% endblock %}

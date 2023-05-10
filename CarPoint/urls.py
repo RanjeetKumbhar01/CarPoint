@@ -19,4 +19,5 @@ urlpatterns = [
     path('aboutUs/',views.aboutUs,name='about us'),
     path('discover/',views.discover,name='discover'),
     path('buy',views.buy,name='buy'),
+    
 ]
