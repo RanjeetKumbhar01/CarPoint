@@ -150,7 +150,7 @@ def get_ModelReSellPrice(list):
                 'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin']
         return make
     elif (list == 'model'):
-        df = pd.read_csv('Models\\resell\\model_unique_car_resell.csv')
+        df = pd.read_csv('Models\\new resell\\model_unique_car_resell.csv')
         model = df.model_name.tolist()
         return model
     elif (list == 'cartype'):
