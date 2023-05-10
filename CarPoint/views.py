@@ -5,7 +5,6 @@ import pickle
 import numpy as np
 import locale  # to convert number to currency format
 import pandas as pd
-import tensorflow as tf
 
 
 def index(request):
@@ -180,6 +179,7 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
 
     df = pd.read_csv('Models\\new resell\\new_df_resell_required.csv')
 
+
     t_make = get_label(df, 'manufacturer', manufacturer)
     t_model = get_label(df, 'model', car_model)
     t_condition = get_label(df, 'condition', car_condition)
@@ -205,11 +205,12 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     t_condition = labelencoder.transform(np.array(t_condition).reshape(-1, 1))
     t_fuel = labelencoder.transform(np.array(t_fuel).reshape(-1, 1))
     t_type = labelencoder.transform(np.array(t_type).reshape(-1, 1))
-
+    
     year = scaler.transform([[year]])
     odometer = scaler.transform([[odometer]])
     t_model = scaler.transform(t_model)
 
+    
     user_input = np.concatenate(
         (t_make, t_model, t_fuel, t_type, t_condition, year, odometer))
     print("\nafter scaling:\n")
@@ -218,8 +219,8 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
 
     # # Use the trained model to make predictions on the scaled user input
     predicted_value = model.predict(user_input.reshape(1, -1))
-    print("pred: ", predicted_value)
-    print("pred log: ", np.power(2.71828, predicted_value))
+    print("pred: ",predicted_value)
+    print("pred log: ",np.power(2.71828, predicted_value))
     predicted_value = np.power(2.71828, predicted_value)
     locale.setlocale(locale.LC_ALL, '')
 
@@ -227,8 +228,7 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     dollar = '$'
 
     # Use the locale.currency() function to format the predicted value as a dollar amount
-    formatted_number = locale.currency(
-        predicted_value[0].astype(int), symbol=dollar, grouping=True)
+    formatted_number = locale.currency(predicted_value[0].astype(int), symbol=dollar, grouping=True)
 
     # Remove the '.00' from the end of the formatted string, if it exists
     if formatted_number.endswith('.00'):
@@ -243,8 +243,7 @@ def sellingPrice(request):
         manufacturer = request.POST.get('Manufacturer')
         car_model = request.POST.get('Model')
         cartype = request.POST.get('Type')
-        year = int((request.POST.get('Year')).split(
-            '-')[0])  # do int parsing here
+        year = int((request.POST.get('Year')).split('-')[0])  # do int parsing here
         fuel_type = request.POST.get('Fuel')
         car_condition = request.POST.get('Condition')
         odometer = int(request.POST.get('Odometer'))  # do int parsing here
@@ -254,7 +253,7 @@ def sellingPrice(request):
         context = {'Manufacturer': manufacturer,
                    'Model': car_model,
                    'Type': cartype,
-                   #    'Year': year,
+                #    'Year': year,
                    'Year': request.POST.get('Year'),
                    "Fuel": fuel_type,
                    'Condition': car_condition,
@@ -278,95 +277,13 @@ def sellingPrice(request):
 
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-# M O D E L --  G E N  M O D E L
+# M O D E L --  
 
 
-def get_genModel(list):
-    if (list == 'type'):
-        type = ['Hatchback', 'MPV', 'MUV', 'SUV', 'Sedan', 'Crossover', 'Coupe','Convertible', 'Sports', 'Pick-up']
-        return type
-    elif (list == 'model'):
-        model = ['3-Series', '5-Series', '6-Series', 'A3', 'A3 Cabriolet', 'A4', 'A5', 'A6', 'Abarth Avventura', 'Abarth Punto', 'Accord Hybrid', 'Alto', 'Alto 800 Tour', 'Alto K10', 'Altroz', 'Alturas G4', 'Amaze', 'Ameo', 'Aspire', 'Aura', 'Avanti', 'Avventura', 'Baleno', 'Baleno Rs', 'Bolero', 'Bolero Power Plus', 'Bolt', 'Brv', 'Camry', 'Captur', 'Carnival', 'Celerio', 'Celerio Tour', 'Celerio X', 'Ciaz', 'City', 'Civic', 'Clubman', 'Compass', 'Compass Trailhawk', 'Convertible', 'Cooper 3 Door', 'Cooper 5 Door', 'Corolla Altis', 'Countryman', 'Cr-V', 'Creta', 'Discovery Sport', 'Dmax V-Cross', 'Duster', 'Dzire', 'Dzire Tour', 'E Verito', 'E2O Plus', 'Ecosport', 'Eeco', 'Elantra', 'Elite I20', 'Endeavour', 'Ertiga', 'Es', 'Etios Cross', 'Etios Liva', 'Extreme', 'F-Pace', 'Figo', 'Fortuner', 'Freestyle', 'Glanza', 'Go', 'Go+', 'Grand I10', 'Grand I10 Nios', 'Grand I10 Prime', 'Gurkha', 'Gypsy', 'Harrier', 'Hector', 'Hexa', 'I20 Active', 'Ignis', 'Innova Crysta', 'Jazz', 'John Cooper Works', 'Kicks', 'Kodiaq', 'Kodiaq Scout', 'Kona Electric', 'Kuv100 Nxt', 'Kwid', 'Linea', 'Linea Classic',
-                 'Lodgy', 'Marazzo', 'Mercedes-Benz A-Class', 'Mercedes-Benz B-Class', 'Mercedes-Benz C-Class', 'Mercedes-Benz C-Class Cabriolet', 'Mercedes-Benz Cla-Class', 'Mercedes-Benz E-Class', 'Mercedes-Benz Gla-Class', 'Mercedes-Benz Glc', 'Micra', 'Micra Active', 'Monte Carlo', 'Mu-X', 'Nano Genx', 'Nexon', 'Nexon Ev', 'Nuvosport', 'Nx 300H', 'Octavia', 'Omni', 'Outlander', 'Pajero Sport', 'Passat', 'Platinum Etios', 'Polo', 'Prius', 'Punto Evo', 'Punto Evo Pure', 'Q3', 'Q5', 'Qute (Re60)', 'Range Evoque', 'Rapid', 'Redi-Go', 'Rio', 'S-Cross', 'S-Presso', 'S60', 'S60 Cross Country', 'S90', 'Safari Storme', 'Santro', 'Scorpio', 'Seltos', 'Sunny', 'Superb', 'Superb Sportline', 'Swift', 'Terrano', 'Thar', 'Tiago', 'Tiago Nrg', 'Tigor', 'Tigor Ev', 'Tiguan', 'Triber', 'Tucson', 'Tuv300', 'Tuv300 Plus', 'Urban Cross', 'V40', 'V40 Cross Country', 'Vento', 'Venue', 'Verito', 'Verito Vibe', 'Verna', 'Vitara Brezza', 'Wagon R', 'Winger', 'Wr-V', 'Wrangler', 'X1', 'X3', 'X4', 'Xc40', 'Xc60', 'Xcent', 'Xcent Prime', 'Xe', 'Xf', 'Xl6', 'Xuv300', 'Xuv500', 'Xylo', 'Yaris', 'Zest', 'Zs Ev']
-        model = pd.Index(model)
-        return model
-    else:
-        fuel = ['Petrol', 'CNG', 'Diesel','CNG + Petrol', 'Hybrid', 'Electric']
-        return fuel
-
-
-def get_key(char_list, target_char):
-    # return [int(char == target_char) for char in char_list]
-    # D E B U G G I N G   A R E A
-    result = []
-    for char in char_list:
-        if char == target_char:
-            result.append(1)
-        else:
-            result.append(0)
-    return result
-
-
-def genModel(price, seat, mileage, fuel_type, body_type):
-    fuel = get_genModel('fuel')
-    type = get_genModel('type')
-    model_list = get_genModel('model')
-    
-    # for i in fuel:
-    #     print(i)
-    # for i in type:
-    #     print(i)
-    t_type = get_key(type, body_type)
-    t_fuel = get_key(fuel, fuel_type)
-
-    model = tf.keras.models.load_model(
-        'Models\\gen model\\latest_better_65_without_trans_gen_model.h5')
-    scaler = pickle.load(
-        open('Models\\gen model\\standard_scaler_gen_model.pkl', 'rb'))
-    # D E B U G G I N G   A R E A
-    price = int(price)
-    print("\nBefore scaling:\n")
-    param = {
-        'Price': (price),
-        "seat": (seat),
-        'Mileage': (mileage),
-        't_type': len(t_type),
-        't_fuel': len(t_fuel),
-    }
-
-
-    user_input = np.concatenate(
-        ([price, seat, mileage], t_fuel, t_type))
-
-    # Reshape the input vector to have shape (1, n_features)
-    user_input = user_input.reshape(1, -1)
-
-    # Scale the input vector using the pre-trained scaler
-    user_input_scaled = scaler.transform(user_input)
-    print("\nafter scaling:\n")
-    print(user_input_scaled)
-
-    # # Use the trained model to make predictions on the scaled user input
-    predicted_value = model.predict(user_input_scaled)
-    max_index = np.argmax(predicted_value, axis=1)
-    print("predicted_value", model_list[max_index][0])
-    print(len(model_list[max_index][0]))
-    return model_list[max_index][0]
-
-
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def firstModel(request):
     if request.method == 'POST':
-<<<<<<< HEAD
-        fuel = request.POST.get('Fuel')
-        price = request.POST.get('Price')
-        body = request.POST.get('Type')
-        seat = int(request.POST.get('Seat'))
-        mileage = int(request.POST.get('Mileage'))
-        # price = int(price)
-        # model = genModel(price, seat, mileage, fuel, body)
-        model = 'BMW'
-        print("-------------")
-=======
         price=request.POST.get('Price')    
         fuel=request.POST.get('Fuel')    
         body=request.POST.get('Type') 
@@ -374,7 +291,6 @@ def firstModel(request):
         mileage=request.POST.get('Mileage') #do int
         
         model='BMW'
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
         context={ 
                   'Price':price,
                   'Fuel':fuel,
@@ -383,25 +299,10 @@ def firstModel(request):
                   'Mileage':mileage,
                   'Model':model
         }
-        print(context)
-        return render(request, 'model1.html', context)
-
+        return render(request,'model1.html',context)
+           
         # return HttpResponse(Year)
     elif request.method == 'GET':
-<<<<<<< HEAD
-        context = {'Price': '',
-                   'Fuel': '',
-                   'Type': '',
-                   'Seat': '',
-                   'Mileage': '',
-                   'Modal': ''
-                   }
-        return render(request, 'model1.html', context)
-    return render(request, 'model1.html')
-
-# -------------------------------------------------------------------------
-# -------------------------------------------------------------------------
-=======
            context={ 'Price':'',
                   'Fuel':'',
                   'Type':'',
@@ -411,7 +312,6 @@ def firstModel(request):
                   }
            return render(request,'model1.html',context)    
     return render(request,'model1.html')
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
 
 def getBinary(data):
     if(data=='Yes'):
@@ -421,22 +321,6 @@ def getBinary(data):
     
 def secondModel(request):
     if request.method == 'POST':
-<<<<<<< HEAD
-        price = request.POST.get('Price')
-        fuel = request.POST.get('Fuel')
-        body = request.POST.get('Type')
-        seat = request.POST.get('Seat')
-        mileage = request.POST.get('Mileage')
-
-        modal = 'BMW'
-        context = {
-            'Price': price,
-            'Fuel': fuel,
-            'Type': body,
-            'Seat': seat,
-            'Mileage': mileage,
-            'Modal': modal
-=======
         price=request.POST.get('Price')    
         airBag=request.POST.get('airBag')    
         engine=getBinary(request.POST.get('Engine'))         
@@ -453,24 +337,11 @@ def secondModel(request):
                   'EBD':request.POST.get('EBD'),
                   'ESC':request.POST.get('ESC') ,
                   'Model':model
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
         }
-        return render(request, 'model2.html', context)
-
+        return render(request,'model2.html',context)
+           
         # return HttpResponse(Year)
     elif request.method == 'GET':
-<<<<<<< HEAD
-        context = {'Manufacturer': "",
-                   'Model': "",
-                   'Type': "",
-                   'Year': "",
-                   "Fuel": "",
-                   'Condition': "",
-                   "Odometer": "",
-                   }
-        return render(request, 'model2.html', context)
-    return render(request, 'model2.html')
-=======
            context={ 'Price':'',
                   'airBag':'',
                   'Engine':'',
@@ -481,23 +352,10 @@ def secondModel(request):
                   }
            return render(request,'model2.html',context)    
     return render(request,'model2.html')
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
 
 
 def thiredModel(request):
     if request.method == 'POST':
-<<<<<<< HEAD
-        price = request.POST.get('Price')
-        fuel = request.POST.get('Fuel')
-        mileage = request.POST.get('Mileage')  # do int
-
-        modal = 'BMW'
-        context = {
-            'Price': price,
-            'Fuel': fuel,
-            'Mileage': mileage,
-            'Modal': modal
-=======
         price=request.POST.get('Price')    
         fuel=request.POST.get('Fuel')         
         mileage=request.POST.get('Mileage')   #do int
@@ -508,21 +366,11 @@ def thiredModel(request):
                   'Fuel':fuel,                  
                   'Mileage':mileage,
                   'Model':model
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
         }
-        return render(request, 'model3.html', context)
-
+        return render(request,'model3.html',context)
+           
         # return HttpResponse(Year)
     elif request.method == 'GET':
-<<<<<<< HEAD
-        context = {'Price': '',
-                   'Fuel': '',
-                   'Mileage': '',
-                   'Modal': ''
-                   }
-        return render(request, 'model3.html', context)
-    return render(request, 'model3.html')
-=======
            context={ 'Price':'',
                   'Fuel':'',                  
                   'Mileage':'',
@@ -530,11 +378,10 @@ def thiredModel(request):
                   }
            return render(request,'model3.html',context)    
     return render(request,'model3.html')
->>>>>>> 7aa1fa2494c114a75e5801939ee1d217674a5f1c
 
 
 def dataset1(request):
-    return  render(request,'dataset1.html')
+    return  render(request,'model3.html')
 
 
 def dataset2(request):
