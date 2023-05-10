@@ -209,6 +209,7 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     year = scaler.transform([[year]])
     odometer = scaler.transform([[odometer]])
     t_model = scaler.transform(t_model)
+
     
     user_input = np.concatenate(
         (t_make, t_model, t_fuel, t_type, t_condition, year, odometer))
@@ -274,20 +275,15 @@ def sellingPrice(request):
 
     return render(request, 'sell.html')
 
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# M O D E L --  
 
+
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 def firstModel(request):
     if request.method == 'POST':
-
-        fuel = request.POST.get('Fuel')
-        price = request.POST.get('Price')
-        body = request.POST.get('Type')
-        seat = int(request.POST.get('Seat'))
-        mileage = int(request.POST.get('Mileage'))
-        # price = int(price)
-        # model = genModel(price, seat, mileage, fuel, body)
-        model = 'BMW'
-        print("-------------")
-
         price=request.POST.get('Price')    
         fuel=request.POST.get('Fuel')    
         body=request.POST.get('Type') 
@@ -295,7 +291,6 @@ def firstModel(request):
         mileage=request.POST.get('Mileage') #do int
         
         model='BMW'
-
         context={ 
                   'Price':price,
                   'Fuel':fuel,
@@ -319,12 +314,11 @@ def firstModel(request):
     return render(request,'model1.html')
 
 def getBinary(data):
-    if (data == 'Yes'):
+    if(data=='Yes'):
         return 1
     else:
         return 0
-
-
+    
 def secondModel(request):
     if request.method == 'POST':
         price=request.POST.get('Price')    
@@ -387,7 +381,7 @@ def thiredModel(request):
 
 
 def dataset1(request):
-    return  render(request,'dataset1.html')
+    return  render(request,'model3.html')
 
 
 def dataset2(request):
