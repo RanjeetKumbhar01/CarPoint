@@ -381,7 +381,7 @@ def thiredModel(request):
 
 
 def dataset1(request):
-    return HttpResponse("It Is dataset 1")
+    return  render(request,'dataset1.html')
 
 
 def dataset2(request):
