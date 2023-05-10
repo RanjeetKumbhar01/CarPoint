@@ -86,7 +86,7 @@ def sellingPrice(request):
     if request.method == 'POST':
         Manufacturer=request.POST.get('Manufacturer')    
         Model=request.POST.get('Model')    
-        Type=request.POST.get('Type') 
+        Type=request.POST.get('Type')         
         Year= (request.POST.get('Year')).split('-')[0]    #do int parsing here    
         Fuel=request.POST.get('Fuel') 
         Condition=request.POST.get('Condition') 
@@ -95,7 +95,7 @@ def sellingPrice(request):
         context={ 'Manufacturer':Manufacturer,    
                 'Model':Model,  
                 'Type':Type,
-                'Year':Year,
+                'Year':request.POST.get('Year'),
                 "Fuel":Fuel,
                 'Condition':Condition,
                  "Odometer":Odometer,
@@ -110,7 +110,8 @@ def sellingPrice(request):
                 'Year':"",
                 "Fuel":"",
                 'Condition':"",
-                 "Odometer":""}
+                 "Odometer":"",
+                 "Price":""}
        return render(request,'sell.html',context)
     
     
@@ -119,13 +120,94 @@ def sellingPrice(request):
     
 
 def firstModel(request):
-    return HttpResponse("It Is Model 1")
+       if request.method == 'POST':
+        price=request.POST.get('Price')    
+        fuel=request.POST.get('Fuel')    
+        body=request.POST.get('Type') 
+        seat= request.POST.get('Seat')   #do int
+        mileage=request.POST.get('Mileage') #do int
+        
+        modal='BMW'
+        context={ 
+                  'Price':price,
+                  'Fuel':fuel,
+                  'Type':body,
+                  'Seat':seat,
+                  'Mileage':mileage,
+                  'Modal':modal
+        }
+        return render(request,'model1.html',context)
+           
+        # return HttpResponse(Year)
+       elif request.method == 'GET':
+           context={ 'Price':'',
+                  'Fuel':'',
+                  'Type':'',
+                  'Seat':'',
+                  'Mileage':'',
+                  'Modal':''
+                  }
+           return render(request,'model1.html',context)    
+       return render(request,'model1.html')
+    
+    
 
 def secondModel(request):
-    return HttpResponse("It Is Model 2")
+       if request.method == 'POST':
+        price=request.POST.get('Price')    
+        fuel=request.POST.get('Fuel')    
+        body=request.POST.get('Type') 
+        seat= request.POST.get('Seat')  
+        mileage=request.POST.get('Mileage') 
+        
+        modal='BMW'
+        context={ 
+                  'Price':price,
+                  'Fuel':fuel,
+                  'Type':body,
+                  'Seat':seat,
+                  'Mileage':mileage,
+                  'Modal':modal
+        }
+        return render(request,'model2.html',context)
+           
+        # return HttpResponse(Year)
+       elif request.method == 'GET':
+           context={ 'Manufacturer':"",    
+                'Model':"" ,  
+                'Type':"",
+                'Year':"",
+                "Fuel":"",
+                'Condition':"",
+                 "Odometer":"",
+                  }
+           return render(request,'model2.html',context)    
+       return render(request,'model2.html')
 
 def thiredModel(request):
-    return HttpResponse("It Is Model 3")
+     if request.method == 'POST':
+        price=request.POST.get('Price')    
+        fuel=request.POST.get('Fuel')         
+        mileage=request.POST.get('Mileage')   #do int
+        
+        modal='BMW'
+        context={ 
+                  'Price':price,
+                  'Fuel':fuel,                  
+                  'Mileage':mileage,
+                  'Modal':modal
+        }
+        return render(request,'model3.html',context)
+           
+        # return HttpResponse(Year)
+     elif request.method == 'GET':
+           context={ 'Price':'',
+                  'Fuel':'',                  
+                  'Mileage':'',
+                  'Modal':''
+                  }
+           return render(request,'model3.html',context)    
+     return render(request,'model3.html')
 
 def dataset1(request):
     return HttpResponse("It Is dataset 1")
