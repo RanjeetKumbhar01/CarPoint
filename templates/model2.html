@@ -12,15 +12,15 @@ Selling Price
 {% block body %}
 
 <section class="selling_Page_container">
-    <div class="page_container">
+    <div class="page_container" style="padding-top: 30px;">
         <div class="hero_section">
-            <h3>{% if Modal %} Your Dreem Model{% else %} Find {% endif %}</h3>
-            <h1> {% if Modal %} {{Modal}} {% else %} Best Secure Modal{% endif %}</h1>
+            <h3>{% if Model %} Your Dreem Model{% else %} Find {% endif %}</h3>
+            <h1> {% if Model %} {{Model}} {% else %} Best Secure Model{% endif %}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
             <img src="../static/image/car sell.png" alt="sell price image">
         </div>
 
-        <div class="selling_form">
+        <div class="selling_form" style="padding-top: 20px; padding-bottom: 20px;">
             <form class="sell_form_container" action="" method="post" >
                 {% csrf_token %}
 
@@ -45,39 +45,49 @@ Selling Price
                     </div>                  
                 </div>
 
-                  <!-- Fuel TYpe -->
+                  <!-- Engine_Malfunction_Light -->
                   <div class="form_fields">
-                    <p>Fuel type</p>
-                    <input type="text" id="Fuel" value="{{Fuel}}"  name="Fuel" placeholder="Fuel" autocomplete="off"> 
+                    <p>Engine Malfunction Light</p>
+                    <input type="text" id="Engine" value="{{Engine}}"  name="Engine" placeholder="Yes or No" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
                     <div class="Fuel_suggection">
                         <ul>                           
                         </ul>
                     </div>                     
                 </div>
 
-                <!-- Body type -->
+                <!-- Anti-lock Braking System -->
                 <div class="form_fields">
-                    <p>Body Type</p>
-                    <input type="text" value="{{Type}}" id="Type" name="Type" placeholder="Type" autocomplete="off"> 
+                    <p>Anti-lock Braking System</p>
+                    <input type="text" value="{{ABC}}" id="ABC" name="ABC" placeholder="Yes or No" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
                     <div class="Type_suggection">
                         <ul>                           
                         </ul>
-                    </div> 
-
-                 <!-- Seating Capacity -->
+                    </div>   
+                </div>              
                  
 
-                  <!-- Mileage -->
+                  <!-- Electronic Brakeforce Distribution -->
                   <div class="form_fields">
-                    <p>Mileage</p>
-                    <input type="text" value="{{Mileage}}" name="Mileage" id="Mileage" placeholder="Mileage in Miles">                    
+                    <p>Electronic Brakeforce Distribution</p>
+                    <input type="text" value="{{EBD}}" name="EBD" id="EBD" placeholder="Yes or NO" autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <div class="Make_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                   
                 </div>
 
-                                      
+                  <!-- Electronic Stability Control -->
+                  <div class="form_fields">
+                    <p>Electronic Stability Control</p>
+                    <input type="text" value="{{ESC}}" name="ESC" id="ESC" placeholder="Yes or NO" autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <div class="esc_suggection">
+                        <ul> 
+                                                  
+                        </ul>
+                    </div>                   
+                </div>                                     
                     
-                </div> 
-                
-                    
+                      
              
                
                <div class="form_fields">   
@@ -92,7 +102,7 @@ Selling Price
 {% endblock %}
 
 {% block script %}
-<!-- script for Seat -->
+<!-- script for airBag -->
 <script>
     
     var  list_of_Seat=[ 1,2,  3,  4,  6,  9,  8,  7, 10,  ];
@@ -176,38 +186,28 @@ Selling Price
  
  </script>
 
-<!-- script for car Type -->
+<!-- script for ABC -->
 <script>
     
-   var  list_of_Type=['Hatchback', 'MPV', 'MUV', 'SUV', 'Sedan', 'Crossover', 'Coupe',
-                        'Convertible', 'Sports', 'Pick-up' ];
+   var  list_of_Type=['Yes', 'No' ];
 
- var typeInputBox=document.getElementById('Type');
+ var typeInputBox=document.getElementById('ABC');
  var typeSuggection=document.querySelector('.Type_suggection');
  var typeSuggectionList=typeSuggection.querySelector('ul')
 
 
  function updateType(selected_Fuel)
  {
-    document.getElementById('Type').value=selected_Fuel.innerText;
+    document.getElementById('ABC').value=selected_Fuel.innerText;
     typeSuggection.classList.remove('active')
  }
 
 
- typeInputBox.addEventListener('keyup',()=>{
-    typeSuggection.classList.remove('active');
-    typeSuggection.classList.toggle('active');
-          let arr=[];
-          let SearchVal=typeInputBox.value.toLowerCase();
-           arr=list_of_Type.filter(data =>{
-                     return data.toLocaleLowerCase().startsWith(SearchVal);
-                }).map(data => '<li onclick="updateType(this)">'+data+'</li>').join("");
-                typeSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
-
- });
+ 
 
  typeInputBox.addEventListener('click',() =>{
     typeSuggection.classList.toggle('active')
+    typeSuggectionList.innerHTML=""
     arr=[];
     arr=list_of_Type.forEach(element => {
     li="<li onclick=updateType(this)>"+element+"</li>";
@@ -217,38 +217,26 @@ Selling Price
 
 </script>
 
-<!-- script for the Fuel -->
+<!-- script for the Engine -->
 <script>
 
     
-   var  list_of_Fuel=['Petrol', 'CNG', 'Diesel', 'CNG + Petrol', 'Hybrid', 'Electric'];
+   var  list_of_Fuel=['Yes', 'No'];
 
- var FuelInputBox=document.getElementById('Fuel');
+ var FuelInputBox=document.getElementById('Engine');
  var FuelSuggection=document.querySelector('.Fuel_suggection');
  var FuelSuggectionList=FuelSuggection.querySelector('ul')
 
 
  function updateFuel(selected_Fuel)
  {
-    document.getElementById('Fuel').value=selected_Fuel.innerText;
+    document.getElementById('Engine').value=selected_Fuel.innerText;
     FuelSuggection.classList.remove('active')
  }
 
-
- FuelInputBox.addEventListener('keyup',()=>{
-    FuelSuggection.classList.remove('active');
-    FuelSuggection.classList.toggle('active');
-          let arr=[];
-          let SearchVal=FuelInputBox.value.toLowerCase();
-           arr=list_of_Fuel.filter(data =>{
-                     return data.toLocaleLowerCase().startsWith(SearchVal);
-                }).map(data => '<li onclick="updateFuel(this)">'+data+'</li>').join("");
-            FuelSuggectionList.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
-
- });
-
 FuelInputBox.addEventListener('click',() =>{
     FuelSuggection.classList.toggle('active')
+    FuelSuggectionList.innerHTML=""
     arr=[];
     arr=list_of_Fuel.forEach(element => {
     li="<li onclick=updateFuel(this)>"+element+"</li>";
@@ -258,19 +246,13 @@ FuelInputBox.addEventListener('click',() =>{
 
 </script>
 
-<!-- script for  the manufacturer -->
+<!-- script for  the EBD -->
 <script>
    
 
-   var  list_of_make=['jeep', 'bmw', 'dodge', 'chevrolet', 'ford', 'honda', 'toyota',
-       'nissan', 'subaru', 'gmc', 'volkswagen', 'kia', 'acura', 'ram',
-       'chrysler', 'hyundai', 'cadillac', 'volvo', 'mercedes-benz',
-       'audi', 'infiniti', 'mazda', 'mini', 'buick', 'mitsubishi',
-       'rover', 'pontiac', 'lincoln', 'lexus', 'fiat', 'jaguar',
-       'mercury', 'saturn', 'tesla', 'harley-davidson', 'ferrari',
-       'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin'];
+   var  list_of_make=['Yes','NO'];
 
-       const make_inputBx =document.querySelector('.Manufacturer');
+       const make_inputBx = document.getElementById('EBD');
        const make_suggection=document.querySelector('.Make_suggection');
        const make_suggection_list=make_suggection.querySelector('ul');
        make_suggection.classList.remove('active');
@@ -284,26 +266,14 @@ FuelInputBox.addEventListener('click',() =>{
             make_suggection.classList.remove('active');
         }
 
-        make_inputBx.addEventListener('keyup',()=>{
-
-          make_suggection.classList.remove('active');
-          make_suggection.classList.toggle('active');
-          let arr=[];
-          let SearchVal=make_inputBx.value.toLowerCase();
-           arr=list_of_make.filter(data =>{
-                     return data.toLocaleLowerCase().startsWith(SearchVal);
-                }).map(data => '<li onclick="showSuggection(this)">'+data+'</li>').join("");
-            make_suggection_list.innerHTML=arr ? arr : "<p>Oops! Manufacturer not Found</p>";
-
-           })
-
-          
+                
         // FuelSuggection.classList.toggle('active');
     
 
        make_inputBx.addEventListener('click',() => {
         
          make_suggection.classList.toggle('active');
+         make_suggection_list.innerHTML=""
          arr=[];
          arr=list_of_make.forEach(element => {
             li="<li onclick=showSuggection(this)>"+element+"</li>";
@@ -312,13 +282,52 @@ FuelInputBox.addEventListener('click',() =>{
         //  console.log(arr);
 
        })
-
-   
-       
-    // scripts for tha Fuel
+    
       
 
 </script>
+
+
+<!-- script for  the ESC -->
+<script>
+   
+
+    var  list_of_ESC=['Yes','NO'];
+ 
+        const ESC_inputBx = document.getElementById('ESC');
+        const ESC_suggection=document.querySelector('.esc_suggection');
+        const ESC_suggection_list=ESC_suggection.querySelector('ul');
+        ESC_suggection.classList.remove('active');
+ 
+    
+     
+ 
+ 
+         function showESC(selected){
+             document.getElementById('ESC').value=selected.innerText;
+            ESC_suggection.classList.remove('active');
+         }
+ 
+                 
+         // FuelSuggection.classList.toggle('active');
+     
+ 
+         ESC_inputBx.addEventListener('click',() => {
+         
+            ESC_suggection.classList.toggle('active');
+            ESC_suggection_list.innerHTML=""
+          arr=[];
+          arr=list_of_ESC.forEach(element => {
+             li="<li onclick=showESC(this)>"+element+"</li>";
+             ESC_suggection_list.insertAdjacentHTML("beforeend",li)            
+          });
+         //  console.log(arr);
+ 
+        })
+     
+       
+ 
+ </script>
 
 
 

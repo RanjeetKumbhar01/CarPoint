@@ -290,14 +290,14 @@ def firstModel(request):
         seat= request.POST.get('Seat')   #do int
         mileage=request.POST.get('Mileage') #do int
         
-        modal='BMW'
+        model='BMW'
         context={ 
                   'Price':price,
                   'Fuel':fuel,
                   'Type':body,
                   'Seat':seat,
                   'Mileage':mileage,
-                  'Modal':modal
+                  'Model':model
         }
         return render(request,'model1.html',context)
            
@@ -308,40 +308,47 @@ def firstModel(request):
                   'Type':'',
                   'Seat':'',
                   'Mileage':'',
-                  'Modal':''
+                  'Model':''
                   }
            return render(request,'model1.html',context)    
     return render(request,'model1.html')
 
-
+def getBinary(data):
+    if(data=='Yes'):
+        return 1
+    else:
+        return 0
+    
 def secondModel(request):
     if request.method == 'POST':
         price=request.POST.get('Price')    
-        fuel=request.POST.get('Fuel')    
-        body=request.POST.get('Type') 
-        seat= request.POST.get('Seat')  
-        mileage=request.POST.get('Mileage') 
+        airBag=request.POST.get('airBag')    
+        engine=getBinary(request.POST.get('Engine'))         
+        abc= getBinary(request.POST.get('ABC'))  
+        ebd=getBinary(request.POST.get('EBD'))
+        esc=getBinary(request.POST.get('ESC') )
         
-        modal='BMW'
+        model='BMW'
         context={ 
                   'Price':price,
-                  'Fuel':fuel,
-                  'Type':body,
-                  'Seat':seat,
-                  'Mileage':mileage,
-                  'Modal':modal
+                  'airBag':airBag,
+                  'Engine':request.POST.get('Engine'),
+                  'ABC':request.POST.get('ABC'),
+                  'EBD':request.POST.get('EBD'),
+                  'ESC':request.POST.get('ESC') ,
+                  'Model':model
         }
         return render(request,'model2.html',context)
            
         # return HttpResponse(Year)
     elif request.method == 'GET':
-           context={ 'Manufacturer':"",    
-                'Model':"" ,  
-                'Type':"",
-                'Year':"",
-                "Fuel":"",
-                'Condition':"",
-                 "Odometer":"",
+           context={ 'Price':'',
+                  'airBag':'',
+                  'Engine':'',
+                  'ABC':'',
+                  'EBD':'',
+                  'ESC':'',
+                  'Model':''
                   }
            return render(request,'model2.html',context)    
     return render(request,'model2.html')
@@ -353,12 +360,12 @@ def thiredModel(request):
         fuel=request.POST.get('Fuel')         
         mileage=request.POST.get('Mileage')   #do int
         
-        modal='BMW'
+        model='BMW'
         context={ 
                   'Price':price,
                   'Fuel':fuel,                  
                   'Mileage':mileage,
-                  'Modal':modal
+                  'Model':model
         }
         return render(request,'model3.html',context)
            
@@ -367,7 +374,7 @@ def thiredModel(request):
            context={ 'Price':'',
                   'Fuel':'',                  
                   'Mileage':'',
-                  'Modal':''
+                  'Model':''
                   }
            return render(request,'model3.html',context)    
     return render(request,'model3.html')
