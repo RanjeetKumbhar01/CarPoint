@@ -15,7 +15,7 @@ Selling Price
     <div class="page_container">
         <div class="hero_section">
 
-            <h3>{% if Model %} Your Dream Model{% else %} Find {% endif %}</h3>
+            <h3>{% if Model %} Your Dreem Model{% else %} Find {% endif %}</h3>
             <h1> {% if Model %} {{Model}} {% else %} Best Model{% endif %}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
             <img src="../static/image/car sell.png" alt="sell price image">
