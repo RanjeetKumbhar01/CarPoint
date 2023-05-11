@@ -186,7 +186,8 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     t_fuel = get_label(df, 'fuel', fuel_type)
     t_type = get_label(df, 'type', cartype)
 
-    model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
+    # model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
+    model = pickle.load(open('Models\\new resell\\latest_ABR_reg.pkl', 'rb'))
     scaler = pickle.load(
         open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
     labelencoder = pickle.load(
@@ -235,8 +236,6 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
         formatted_number = formatted_number[:-3]
         return formatted_number
 
-# @ajay
-
 
 def sellingPrice(request):
     if request.method == 'POST':
@@ -244,10 +243,10 @@ def sellingPrice(request):
         car_model = request.POST.get('Model')
         cartype = request.POST.get('Type')
         year = int((request.POST.get('Year')).split(
-            '-')[0])  # do int parsing here
+            '-')[0])  
         fuel_type = request.POST.get('Fuel')
         car_condition = request.POST.get('Condition')
-        odometer = int(request.POST.get('Odometer'))  # do int parsing here
+        odometer = int(request.POST.get('Odometer')) 
         price = modelresell(int(year), manufacturer, car_model,
                             car_condition.lower(), fuel_type, int(odometer), cartype)
 
@@ -419,7 +418,7 @@ def secureModel(price, engine, airBag, abs, ebd, esc):
         open('Models\\secure model\\standard_scaler_secure_model.pkl', 'rb'))
     # D E B U G G I N G   A R E A
     price = int(price)
-    airBag= int(airBag)
+    airBag = int(airBag)
     # print("\nBefore scaling:\n")
     param = {
         'Price': type(price),
@@ -485,7 +484,60 @@ def secondModel(request):
     return render(request, 'model2.html')
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
+# M O D E L --  F U E L - E C O   M O D E L
 
+
+def get_fuelEcoModel(list):
+    if (list == 'model'):
+        model = ['Abarth Punto', 'Alto', 'Alto K10', 'Altroz', 'Amaze', 'Ameo', 'Aspire', 'Aura', 'Avventura', 'Baleno', 'Baleno Rs', 'Bolero', 'Bolero Power Plus', 'Bolt', 'Brv', 'Captur', 'Celerio', 'Celerio Tour', 'Celerio X', 'Ciaz', 'City', 'Creta', 'Discovery', 'Duster', 'Dzire', 'Dzire Tour', 'Ecosport', 'Eeco', 'Elite I20', 'Ertiga', 'Etios Cross', 'Etios Liva', 'Extreme', 'Figo', 'Freestyle', 'Glanza', 'Go', 'Go+', 'Grand I10', 'Grand I10 Nios', 'Grand I10 Prime', 'Gurkha', 'Gypsy', 'I20 Active', 'Ignis', 'Jazz', 'Kicks', 'Kuv100 Nxt', 'Kwid', 'Linea', 'Linea Classic', 'Lodgy', 'Marazzo', 'Micra', 'Micra Active', 'Nano Genx', 'Nexon', 'Nuvosport', 'Octavia', 'Pajero Sport', 'Platinum Etios', 'Polo', 'Punto Evo Pure', 'Rapid', 'Redi-Go', 'Rio', 'S-Cross', 'S-Presso', 'Safari Storme', 'Santro', 'Scorpio', 'Seltos', 'Sunny', 'Swift', 'Terrano', 'Thar', 'Tiago', 'Tiago Nrg', 'Tigor', 'Tigor Ev', 'Triber', 'Tuv300', 'Tuv300 Plus', 'Urban Cross', 'Vento', 'Venue', 'Verito Vibe', 'Verna', 'Vitara Brezza', 'Wagon', 'Wr-V', 'Xcent', 'Xcent Prime', 'Xl6', 'Xuv300', 'Xylo', 'Yaris', 'Zest',
+                 ]
+        model = pd.Index(model)
+        return model
+    elif (list == 'fuel'):
+        fuel = ['Fuel_Type_CNG', 'Fuel_Type_CNG + Petrol',
+                'Fuel_Type_Diesel', 'Fuel_Type_Electric', 'Fuel_Type_Petrol']
+        return fuel
+
+
+def fuelEcoModel(price, mileage, fuel_type):
+    
+    fuel = get_fuelEcoModel('fuel')
+    model_list = get_fuelEcoModel('model')
+
+    
+    t_fuel = get_key(fuel, fuel_type)
+
+    model = tf.keras.models.load_model(
+        'Models\\fuel eco model\\latest_fuel_eco_model.h5')
+    
+    scaler = pickle.load(
+        open('Models\\fuel eco model\\standard_scaler_fue_eco_model.pkl', 'rb'))
+    # D E B U G G I N G   A R E A
+    price = int(price)
+    mileage= int(mileage)
+    print("\nBefore scaling:\n")
+    param = {
+        '\nPrice': (price),
+        '\nMileage': (mileage),
+        '\nt_fuel': (t_fuel)
+    }
+    print(param)
+    user_input = np.concatenate(([price, mileage], t_fuel))
+    # user_input = [[price, mileage], t_fuel]
+    # Reshape the input vector to have shape (1, n_features)
+    user_input = user_input.reshape(1, -1)
+
+    # Scale the input vector using the pre-trained scaler
+    user_input_scaled = scaler.transform(user_input)
+    print("\nafter scaling:\n")
+    print(user_input_scaled)
+
+    # # # Use the trained model to make predictions on the scaled user input
+    predicted_value = model.predict(user_input_scaled)
+    max_index = np.argmax(predicted_value, axis=1)
+    print("predicted_value", model_list[max_index][0])
+    print((model_list[max_index][0]))
+    return model_list[max_index][0]
 
 def thiredModel(request):
     if request.method == 'POST':
@@ -493,31 +545,21 @@ def thiredModel(request):
         fuel = request.POST.get('Fuel')
         mileage = request.POST.get('Mileage')  # do int
 
-        modal = 'BMW'
+        model = fuelEcoModel(price, mileage, fuel)
+        # modal = 'BMW'
         context = {
             'Price': price,
             'Fuel': fuel,
             'Mileage': mileage,
-            'Modal': modal}
-        price = request.POST.get('Price')
-        fuel = request.POST.get('Fuel')
-        mileage = request.POST.get('Mileage')  # do int
-
-        model = 'BMW'
-        context = {
-            'Price': price,
-            'Fuel': fuel,
-            'Mileage': mileage,
-            'Model': model
-        }
+            'Model': model}
         return render(request, 'model3.html', context)
 
         # return HttpResponse(Year)
     elif request.method == 'GET':
         context = {'Price': '',
-                   'Fuel': '',
+                   'Fuel': '',  
                    'Mileage': '',
-                   'Modal': ''
+                   'Model': ''
                    }
         return render(request, 'model3.html', context)
     return render(request, 'model3.html')
