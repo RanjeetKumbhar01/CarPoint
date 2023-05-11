@@ -18,6 +18,8 @@ The main objectives of this project are:
 * **<ins>Usage</ins>**
 * **<ins>Contributing</ins>**
 * **<ins>License</ins>**
+* **<ins>Contact Us</ins>**
+* **<ins>Copyright</ins>**
 
 ## Installation
 ```python
@@ -38,12 +40,19 @@ Thank you for your interest in contributing to our project! To get started, plea
 4. Make your changes and test them thoroughly.
 5. Commit your changes with a clear and descriptive commit message: **git commit -am 'Add some feature'**.
 6. Push your changes to your fork: **git push origin my-new-feature**.
-7. Submit a pull request to the main repository with a clear description of your changes.
-We welcome contributions of all kinds, including bug fixes, feature enhancements, documentation improvements, and more. Please ensure that your code follows our coding standards and that all tests pass before submitting a pull request. If you have any questions or need help getting started, please feel free to open an issue or reach out to us via email ().
+7. Submit a pull request to the main repository with a clear description of your changes.<br>
+
+We welcome contributions of all kinds, including bug fixes, feature enhancements, documentation improvements, and more. Please ensure that your code follows our coding standards and that all tests pass before submitting a pull request. If you have any questions or need help getting started.
 
 ## License
 This project is licensed under the **<ins>Apache License 2.0</ins>** license - see the [LICENSE](https://github.com/AJay6600/CarPoint/blob/main/LICENSE) file for details.
 
+## Contact Us
+If you have any questions or suggestions about our project, please feel free to contact us:
+
+Email:
+* **[Ranjeet](mailto:contact.ranjeetkumbhar@gmail.com) - contact [dot] ranjeetkumbhar [at] gmail [dot] com**
+* **[Ajay](mailto:ajaymore0634@gmail.com)- ajaymore0634 [at] gmail [dot] com**
 ## Copyright
 **Copyright © 2023 Ranjeet Kumbhar, Ajay More**
 
