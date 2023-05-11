@@ -150,7 +150,7 @@ def get_ModelReSellPrice(list):
                 'land rover', 'porche', 'alfa-romeo', 'morgan', 'aston-martin']
         return make
     elif (list == 'model'):
-        df = pd.read_csv('Models\\resell\\model_unique_car_resell.csv')
+        df = pd.read_csv('Models\\new resell\\model_unique_car_resell.csv')
         model = df.model_name.tolist()
         return model
     elif (list == 'cartype'):
@@ -186,7 +186,8 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     t_fuel = get_label(df, 'fuel', fuel_type)
     t_type = get_label(df, 'type', cartype)
 
-    model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
+    # model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
+    model = pickle.load(open('Models\\new resell\\latest_ABR_reg.pkl', 'rb'))
     scaler = pickle.load(
         open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
     labelencoder = pickle.load(
@@ -235,8 +236,6 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
         formatted_number = formatted_number[:-3]
         return formatted_number
 
-# @ajay
-
 
 def sellingPrice(request):
     if request.method == 'POST':
@@ -244,10 +243,10 @@ def sellingPrice(request):
         car_model = request.POST.get('Model')
         cartype = request.POST.get('Type')
         year = int((request.POST.get('Year')).split(
-            '-')[0])  # do int parsing here
+            '-')[0])  
         fuel_type = request.POST.get('Fuel')
         car_condition = request.POST.get('Condition')
-        odometer = int(request.POST.get('Odometer'))  # do int parsing here
+        odometer = int(request.POST.get('Odometer')) 
         price = modelresell(int(year), manufacturer, car_model,
                             car_condition.lower(), fuel_type, int(odometer), cartype)
 
@@ -284,7 +283,7 @@ def sellingPrice(request):
 def get_genModel(list):
     if (list == 'type'):
         type = ['Hatchback', 'MPV', 'MUV', 'SUV', 'Sedan',
-            'Crossover', 'Coupe', 'Convertible', 'Sports', 'Pick-up']
+                'Crossover', 'Coupe', 'Convertible', 'Sports', 'Pick-up']
         return type
     elif (list == 'model'):
         model = ['3-Series', '5-Series', '6-Series', 'A3', 'A3 Cabriolet', 'A4', 'A5', 'A6', 'Abarth Avventura', 'Abarth Punto', 'Accord Hybrid', 'Alto', 'Alto 800 Tour', 'Alto K10', 'Altroz', 'Alturas G4', 'Amaze', 'Ameo', 'Aspire', 'Aura', 'Avanti', 'Avventura', 'Baleno', 'Baleno Rs', 'Bolero', 'Bolero Power Plus', 'Bolt', 'Brv', 'Camry', 'Captur', 'Carnival', 'Celerio', 'Celerio Tour', 'Celerio X', 'Ciaz', 'City', 'Civic', 'Clubman', 'Compass', 'Compass Trailhawk', 'Convertible', 'Cooper 3 Door', 'Cooper 5 Door', 'Corolla Altis', 'Countryman', 'Cr-V', 'Creta', 'Discovery Sport', 'Dmax V-Cross', 'Duster', 'Dzire', 'Dzire Tour', 'E Verito', 'E2O Plus', 'Ecosport', 'Eeco', 'Elantra', 'Elite I20', 'Endeavour', 'Ertiga', 'Es', 'Etios Cross', 'Etios Liva', 'Extreme', 'F-Pace', 'Figo', 'Fortuner', 'Freestyle', 'Glanza', 'Go', 'Go+', 'Grand I10', 'Grand I10 Nios', 'Grand I10 Prime', 'Gurkha', 'Gypsy', 'Harrier', 'Hector', 'Hexa', 'I20 Active', 'Ignis', 'Innova Crysta', 'Jazz', 'John Cooper Works', 'Kicks', 'Kodiaq', 'Kodiaq Scout', 'Kona Electric', 'Kuv100 Nxt', 'Kwid', 'Linea', 'Linea Classic',
@@ -293,7 +292,7 @@ def get_genModel(list):
         return model
     else:
         fuel = ['Petrol', 'CNG', 'Diesel',
-            'CNG + Petrol', 'Hybrid', 'Electric']
+                'CNG + Petrol', 'Hybrid', 'Electric']
         return fuel
 
 
@@ -363,17 +362,16 @@ def firstModel(request):
         body = request.POST.get('Type')
         seat = int(request.POST.get('Seat'))
         mileage = int(request.POST.get('Mileage'))
-        # price = int(price)
-        # model = genModel(price, seat, mileage, fuel, body)
-        model = 'BMW'
+        model = genModel(price, seat, mileage, fuel, body)
+
         print("-------------")
         context = {
-                  'Price': price,
-                  'Fuel': fuel,
-                  'Type': body,
-                  'Seat': seat,
-                  'Mileage': mileage,
-                  'Model': model
+            'Price': price,
+            'Fuel': fuel,
+            'Type': body,
+            'Seat': seat,
+            'Mileage': mileage,
+            'Model': model
         }
         print(context)
         return render(request, 'model1.html', context)
@@ -392,6 +390,7 @@ def firstModel(request):
 
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
+# M O D E L --  S E C U R E   M O D E L
 
 
 def getBinary(data):
@@ -401,38 +400,72 @@ def getBinary(data):
         return 0
 
 
+def get_secureModel(list):
+    if (list == 'model'):
+        model = ['3-Series', '5-Series', 'A3', 'A3 Cabriolet', 'A4', 'A5', 'A6', 'Accord Hybrid', 'Alturas G4', 'Avanti', 'Brv', 'Camry', 'Captur', 'Carnival', 'Ciaz', 'City', 'Civic', 'Clubman', 'Compass', 'Compass Trailhawk', 'Convertible', 'Cooper 3 Door', 'Cooper 5 Door', 'Corolla Altis', 'Countryman', 'Cr-V', 'Creta', 'Discovery Sport', 'Dmax V-Cross', 'Duster', 'E Verito', 'Ecosport', 'Elantra', 'Endeavour', 'Ertiga', 'Es', 'Extreme', 'Fortuner', 'Gurkha', 'Harrier', 'Hector', 'Hexa', 'Innova Crysta', 'John Cooper Works', 'Kicks', 'Kodiaq', 'Kodiaq Scout', 'Kona Electric', 'Lodgy', 'Marazzo', 'Mercedes-Benz A-Class', 'Mercedes-Benz B-Class', 'Mercedes-Benz C-Class', 'Mercedes-Benz Cla-Class', 'Mercedes-Benz E-Class', 'Mercedes-Benz Gla-Class', 'Mercedes-Benz Glc', 'Monte Carlo', 'Mu-X', 'Nexon', 'Nexon Ev', 'Nuvosport', 'Nx 300H', 'Octavia', 'Outlander', 'Pajero Sport', 'Passat', 'Prius', 'Q3', 'Q5', 'Range Evoque', 'Rapid', 'S-Cross', 'S60', 'S60 Cross Country', 'S90', 'Safari Storme', 'Scorpio', 'Seltos', 'Superb', 'Superb Sportline', 'Terrano', 'Tiguan', 'Tucson', 'Tuv300', 'Tuv300 Plus', 'V40', 'V40 Cross Country', 'Vento', 'Venue', 'Verna', 'Vitara Brezza', 'Winger', 'Wr-V', 'X1', 'X3', 'X4', 'Xc40', 'Xc60', 'Xe', 'Xf', 'Xl6', 'Xuv300', 'Xuv500', 'Xylo', 'Yaris', 'Zs Ev',
+                 ]
+        model = pd.Index(model)
+        return model
+
+
+def secureModel(price, engine, airBag, abs, ebd, esc):
+
+    model_list = get_secureModel('model')
+
+    model = pickle.load(
+        open('Models\\secure model\\New_rfd_50_Price__Engine_Malfunction_Light__no_airbags_ABS_EBD_ESC.pkl', 'rb'))
+    scaler = pickle.load(
+        open('Models\\secure model\\standard_scaler_secure_model.pkl', 'rb'))
+    # D E B U G G I N G   A R E A
+    price = int(price)
+    airBag = int(airBag)
+    # print("\nBefore scaling:\n")
+    param = {
+        'Price': type(price),
+        "engine": type(engine),
+        'airBag': type(airBag),
+        'abc': type(abs),
+        'ebd': type(ebd),
+        'esc': type(esc),
+    }
+    # print(param)
+    # user_input = np.concatenate(
+    #     (price, engine, airBag, abs, ebd, esc))
+    user_input = [price, engine, airBag, abs, ebd, esc]
+    # Reshape the input vector to have shape (1, n_features)
+    # user_input = user_input.reshape(1, -1)
+
+    # Scale the input vector using the pre-trained scaler
+    user_input_scaled = scaler.transform([user_input])
+    # print("\nafter scaling:\n")
+    # print(user_input_scaled)
+
+    # # # Use the trained model to make predictions on the scaled user input
+    predicted_value = model.predict(user_input_scaled)
+    max_index = np.argmax(predicted_value, axis=1)
+    print("predicted_value", model_list[max_index][0])
+    print((model_list[max_index][0]))
+    return model_list[max_index][0]
+
+
 def secondModel(request):
     if request.method == 'POST':
-        price = request.POST.get('Price')
-        fuel = request.POST.get('Fuel')
-        body = request.POST.get('Type')
-        seat = request.POST.get('Seat')
-        mileage = request.POST.get('Mileage')
-
-        modal = 'BMW'
-        context = {
-            'Price': price,
-            'Fuel': fuel,
-            'Type': body,
-            'Seat': seat,
-            'Mileage': mileage,
-            'Modal': modal}
         price = request.POST.get('Price')
         airBag = request.POST.get('airBag')
         engine = getBinary(request.POST.get('Engine'))
         abc = getBinary(request.POST.get('ABC'))
         ebd = getBinary(request.POST.get('EBD'))
         esc = getBinary(request.POST.get('ESC'))
-
-        model = 'BMW'
+        model = secureModel(price, engine, airBag, abc, ebd, esc)
+        # model = 'BMW'
         context = {
-                  'Price': price,
-                  'airBag': airBag,
-                  'Engine': request.POST.get('Engine'),
-                  'ABC': request.POST.get('ABC'),
-                  'EBD': request.POST.get('EBD'),
-                  'ESC': request.POST.get('ESC'),
-                  'Model': model
+            'Price': price,
+            'airBag': airBag,
+            'Engine': request.POST.get('Engine'),
+            'ABC': request.POST.get('ABC'),
+            'EBD': request.POST.get('EBD'),
+            'ESC': request.POST.get('ESC'),
+            'Model': model
         }
         return render(request, 'model2.html', context)
 
@@ -449,7 +482,62 @@ def secondModel(request):
                    }
         return render(request, 'model2.html', context)
     return render(request, 'model2.html')
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# M O D E L --  F U E L - E C O   M O D E L
 
+
+def get_fuelEcoModel(list):
+    if (list == 'model'):
+        model = ['Abarth Punto', 'Alto', 'Alto K10', 'Altroz', 'Amaze', 'Ameo', 'Aspire', 'Aura', 'Avventura', 'Baleno', 'Baleno Rs', 'Bolero', 'Bolero Power Plus', 'Bolt', 'Brv', 'Captur', 'Celerio', 'Celerio Tour', 'Celerio X', 'Ciaz', 'City', 'Creta', 'Discovery', 'Duster', 'Dzire', 'Dzire Tour', 'Ecosport', 'Eeco', 'Elite I20', 'Ertiga', 'Etios Cross', 'Etios Liva', 'Extreme', 'Figo', 'Freestyle', 'Glanza', 'Go', 'Go+', 'Grand I10', 'Grand I10 Nios', 'Grand I10 Prime', 'Gurkha', 'Gypsy', 'I20 Active', 'Ignis', 'Jazz', 'Kicks', 'Kuv100 Nxt', 'Kwid', 'Linea', 'Linea Classic', 'Lodgy', 'Marazzo', 'Micra', 'Micra Active', 'Nano Genx', 'Nexon', 'Nuvosport', 'Octavia', 'Pajero Sport', 'Platinum Etios', 'Polo', 'Punto Evo Pure', 'Rapid', 'Redi-Go', 'Rio', 'S-Cross', 'S-Presso', 'Safari Storme', 'Santro', 'Scorpio', 'Seltos', 'Sunny', 'Swift', 'Terrano', 'Thar', 'Tiago', 'Tiago Nrg', 'Tigor', 'Tigor Ev', 'Triber', 'Tuv300', 'Tuv300 Plus', 'Urban Cross', 'Vento', 'Venue', 'Verito Vibe', 'Verna', 'Vitara Brezza', 'Wagon', 'Wr-V', 'Xcent', 'Xcent Prime', 'Xl6', 'Xuv300', 'Xylo', 'Yaris', 'Zest',
+                 ]
+        model = pd.Index(model)
+        return model
+    elif (list == 'fuel'):
+        fuel = ['Fuel_Type_CNG', 'Fuel_Type_CNG + Petrol',
+                'Fuel_Type_Diesel', 'Fuel_Type_Electric', 'Fuel_Type_Petrol']
+        return fuel
+
+
+def fuelEcoModel(price, mileage, fuel_type):
+    
+    fuel = get_fuelEcoModel('fuel')
+    model_list = get_fuelEcoModel('model')
+
+    
+    t_fuel = get_key(fuel, fuel_type)
+
+    model = tf.keras.models.load_model(
+        'Models\\fuel eco model\\latest_fuel_eco_model.h5')
+    
+    scaler = pickle.load(
+        open('Models\\fuel eco model\\standard_scaler_fue_eco_model.pkl', 'rb'))
+    # D E B U G G I N G   A R E A
+    price = int(price)
+    mileage= int(mileage)
+    print("\nBefore scaling:\n")
+    param = {
+        '\nPrice': (price),
+        '\nMileage': (mileage),
+        '\nt_fuel': (t_fuel)
+    }
+    print(param)
+    user_input = np.concatenate(([price, mileage], t_fuel))
+    # user_input = [[price, mileage], t_fuel]
+    # Reshape the input vector to have shape (1, n_features)
+    user_input = user_input.reshape(1, -1)
+
+    # Scale the input vector using the pre-trained scaler
+    user_input_scaled = scaler.transform(user_input)
+    print("\nafter scaling:\n")
+    print(user_input_scaled)
+
+    # # # Use the trained model to make predictions on the scaled user input
+    predicted_value = model.predict(user_input_scaled)
+    max_index = np.argmax(predicted_value, axis=1)
+    print("predicted_value", model_list[max_index][0])
+    print((model_list[max_index][0]))
+    return model_list[max_index][0]
 
 def thiredModel(request):
     if request.method == 'POST':
@@ -457,35 +545,25 @@ def thiredModel(request):
         fuel = request.POST.get('Fuel')
         mileage = request.POST.get('Mileage')  # do int
 
-        modal = 'BMW'
+        model = fuelEcoModel(price, mileage, fuel)
+        # modal = 'BMW'
         context = {
             'Price': price,
             'Fuel': fuel,
             'Mileage': mileage,
-            'Modal': modal}
-        price = request.POST.get('Price')
-        fuel = request.POST.get('Fuel')
-        mileage = request.POST.get('Mileage')  # do int
-
-        model = 'BMW'
-        context = {
-                  'Price': price,
-                  'Fuel': fuel,
-                  'Mileage': mileage,
-                  'Model': model
-        }
+            'Model': model}
         return render(request, 'model3.html', context)
 
         # return HttpResponse(Year)
     elif request.method == 'GET':
         context = {'Price': '',
-                   'Fuel': '',
+                   'Fuel': '',  
                    'Mileage': '',
-                   'Modal': ''
+                   'Model': ''
                    }
         return render(request, 'model3.html', context)
     return render(request, 'model3.html')
-    
+
 
 def dataset1(request):
     return HttpResponse("It Is dataset 1")

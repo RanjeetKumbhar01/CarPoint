@@ -26,7 +26,7 @@
             <a href="/" class="logo">Car<span>Point</span></a>            
                 <ul class="navbar">
                     <li><a class="active" href="/#home">Home</a></li>
-                    <li><a href="/#price">Price</a></li>
+                    <li><a  href="/#price">Price</a></li>
                     <li><a href="/#model">Model</a></li>
                     <li><a href="/#stat">Statitics</a></li>
                     <li><a href="/#about">About</a></li>
@@ -77,6 +77,17 @@
 </div>
 </body>
 <script>
+
+let header =document.querySelector('header');
+    window.addEventListener('scroll',()=>{
+        // header.classList.toggle('logo_bg_0',window.scrollY > 525);
+        // header.classList.toggle('logo_bg_1',window.scrollY > 1270);
+        header.classList.toggle('shadow0',window.scrollY > 0);
+        // header.classList.toggle('link_color_0',window.scrollY > 140);
+        // header.classList.toggle('link_color_1',window.scrollY > 820);
+    });
+
+
     let menu = document.querySelector(' .navbar');
     console.log(menu);
    document.querySelector("#menu-icon").onclick = () =>{
