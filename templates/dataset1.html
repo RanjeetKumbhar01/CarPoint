@@ -16,40 +16,63 @@ Price Dataset
             <div class="hero-section">
                 <h1>Price Dataset</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, reprehenderit architecto. Officiis ipsam rem,</p>
-                <a href="#">View Dataset</a>
+                <div class="btn"><a href="https://drive.google.com/file/d/1N_yqrThGtlMWppDCL5r01G1GWTLLrS-N/view?usp=share_link" target="_blank">View Dataset</a></div>
             </div>   
             <div class="table-section">
-                <h1>A Fancy Table</h1>
+                <h1>Details Of Dataset</h1>
             <table id="customers">
                <tr>
-                <th>Company</th>
-                <th>Contact</th>                
+                <td> Number of Records</td>
+                <td>1,300 </td>                
               </tr>
               <tr>               
-               <td>Maria Anders</td>
-               <td>Germany</td>
+               <td>Features</td>
+               <td>Torque, Power, Mileage, Make,Transmission,Fuel
+                </td>
              </tr>
              <tr>               
-               <td>Christina Berglund</td>
-               <td>Sweden</td>
+               <td>Target Verible</td>
+               <td>Price</td>
              </tr>
              <tr>               
-               <td>Francisco Chang</td>
-               <td>Mexico</td>
+               <td>Scaling and Encoding</td>
+               <td>Scaling & one hot encoding
+               </td>
              </tr>
              <tr>                
-                <td>Roland Mendel</td>
-                <td>Austria</td>
+                <td>Algorithm </td>
+                <td>Random Forest
+                </td>
              </tr>
              <tr>                
-                <td>Helen Bennett</td>
-                <td>UK</td>
+                <td>Accuracy of Model</td>
+                <td>90%</td>
              </tr> 
             </table>
 
             </div>       
         </div>
         <div class="chart-section">
+          <div class="img-section">
+            <img src="../static/image/dataset_title.png" alt="">
+          </div>
+          <div class="select-section">
+            <h1>Data visualization</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias saepe expedita in voluptatum consequunt</p>
+            <div class="btn1"><span>Select Graph Type</span></div>
+            <div class="options">
+              <li onclick="getChart(this)">1D (Linear)</li>
+              <li onclick="getChart(this)">Scatter</li>
+              <li onclick="getChart(this)">2D (Planar)</li>
+              <li onclick="getChart(this)">3D (Volumetric)</li>
+              <li onclick="getChart(this)">Temporal</li>
+              <li onclick="getChart(this)">Multidimensional</li>
+              <li onclick="getChart(this)">Tree/ Hierarchical</li>
+              <li onclick="getChart(this)">Network</li>
+              <li onclick="getChart(this)">scatter plot</li>
+              <li onclick="getChart(this)">bar char</li>
+            </div>
+          </div>
 
         </div>
     </div>
@@ -60,7 +83,35 @@ Price Dataset
 {% endblock %}
 
 {% block script %}
+<script>
+  var img_arr={
+               '1D (Linear)':'bar.png',
+               'Scatter':'scatter1.PNG',
+               '2D (Planar)':'Scatter2.png',
+               '3D (Volumetric)':'',
+               'Temporal':'',
+               'Multidimensional':'',
+               'Tree/ Hierarchical':'',
+               'Network':'',
+               'scatter plot':'',
+               'bar char':''
+               }
+  var Button= document.querySelector('.btn1')
+  var span=Button.querySelector('span')
+  var option=document.querySelector(".options")
+  var image = document.querySelector('img')
 
+  function getChart(graph)
+  {
+      span.innerHTML=graph.innerText;
+      option.classList.toggle("active")
+      image.src="../static/image/dataset1/"+img_arr[graph.innerText];
+  }
+  Button.addEventListener('click', function (){
+    option.classList.toggle("active")
+  })
+
+</script>
 
 
 {% endblock %}

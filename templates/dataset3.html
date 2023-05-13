@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     
+<link rel="stylesheet" type="text/css" href="{% static 'form_css/dataset.css' %}"/>
+{% endblock %}
+{% block title %}
+Genaral Model Dataset
+{% endblock %}
+
+{% block body %}
+<section class="dataset-page">
+    <div class="page_container">
+        <div class="details-section">  
+            <div class="hero-section">
+                <h1>Genaral Model Dataset</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, reprehenderit architecto. Officiis ipsam rem,</p>
+                <div class="btn"><a href="https://drive.google.com/file/d/15YFIgeHXj9RgA_CJvGMt-Z9DkcQ_SGUA/view?usp=share_link" target="_blank">View Dataset</a></div>
+            </div>   
+            <div class="table-section">
+                <h1>Details Of Dataset</h1>
+            <table id="customers">
+               <tr>
+                <td> Number of Records</td>
+                <td>1300</td>                
+              </tr>
+              <tr>               
+               <td>Features</td>
+               <td>Price,Seating Capacity,Mileage,Body_Type,Fuel Type</td>
+             </tr>
+             <tr>               
+               <td>Target Verible</td>
+               <td>Model</td>
+             </tr>
+             <tr>               
+               <td>Scaling and Encoding</td>
+               <td>Scaling</td>
+             </tr>
+             <tr>                
+                <td>Algorithm </td>
+                <td>Neural Network</td>
+             </tr>
+             <tr>                
+                <td>Accuracy of Model</td>
+                <td>80%
+                </td>
+             </tr> 
+            </table>
+
+            </div>       
+        </div>
+        <div class="chart-section">
+          <div class="img-section">
+            <img src="../static/image/dataset_title.png" alt="">
+          </div>
+          <div class="select-section">
+            <h1>Data visualization</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias saepe expedita in voluptatum consequunt</p>
+            <div class="btn1"><span>Select Graph Type</span></div>
+            <div class="options">
+              <li onclick="getChart(this)">1D (Linear)</li>
+              <li onclick="getChart(this)">scatter plot</li>
+              <li onclick="getChart(this)">2D (Planar)</li>
+              <li onclick="getChart(this)">3D (Volumetric)</li>
+              <li onclick="getChart(this)">Temporal</li>
+              <li onclick="getChart(this)">Multidimensional</li>
+              <li onclick="getChart(this)">Tree/ Hierarchical</li>
+              <li onclick="getChart(this)">Network</li>
+              <li onclick="getChart(this)">bar char</li>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+  var img_arr={
+               '1D (Linear)':'1d.png',
+               '2D (Planar)':'2D (Planar).png',
+               '3D (Volumetric)':'',
+               'Temporal':'',
+               'Multidimensional':'',
+               'Tree/ Hierarchical':'',
+               'Network':'',
+               'scatter plot':'scatter.png',
+               'bar char':''
+               }
+  var Button= document.querySelector('.btn1')
+  var span=Button.querySelector('span')
+  var option=document.querySelector(".options")
+  var image = document.querySelector('img')
+
+  function getChart(graph)
+  {
+      span.innerHTML=graph.innerText;
+      option.classList.toggle("active")
+      image.src="../static/image/dataset3/"+img_arr[graph.innerText];
+  }
+  Button.addEventListener('click', function (){
+    option.classList.toggle("active")
+  })
+
+</script>
+
+
+{% endblock %}
