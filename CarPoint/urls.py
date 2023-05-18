@@ -17,7 +17,7 @@ urlpatterns = [
     path('dataset4/',views.dataset4,name='dataset 4'),
     path('dataset5/',views.dataset5,name='dataset 5'),
     path('aboutUs/',views.aboutUs,name='about us'),
-    path('discover/',views.discover,name='discover'),
+    path('discover',views.discover,name='discover'),
     path('buy',views.buy,name='buy'),
     
 ]

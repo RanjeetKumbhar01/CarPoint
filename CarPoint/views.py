@@ -589,7 +589,7 @@ def dataset5(request):
 
 
 def discover(requet):
-    return HttpResponse("Discover")
+    return HttpResponse("<h1> We will Back </h1><br><h4>Feature is under construction</h4>")
 
 
 def aboutUs(request):
