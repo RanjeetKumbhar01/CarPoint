@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'form_css/dataset.css' %}"/>
 {% endblock %}
 {% block title %}
-Price Dataset
+Secure Car Model Dataset
 {% endblock %}
 
 {% block body %}
@@ -14,39 +14,43 @@ Price Dataset
     <div class="page_container">
         <div class="details-section">  
             <div class="hero-section">
-                <h1>Price Dataset</h1>
+                <h1>Secure Car Model Dataset</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, reprehenderit architecto. Officiis ipsam rem,</p>
-                <div class="btn"><a href="https://drive.google.com/file/d/1N_yqrThGtlMWppDCL5r01G1GWTLLrS-N/view?usp=share_link" target="_blank">View Dataset</a></div>
+                <div class="btn"><a href="https://drive.google.com/file/d/1dGC5B2rKIzlMjCF54aP_kN4Vv52P1BAd/view?usp=share_link" target="_blank">View Dataset</a></div>
             </div>   
             <div class="table-section">
                 <h1>Details Of Dataset</h1>
             <table id="customers">
                <tr>
                 <td> Number of Records</td>
-                <td>1,300 </td>                
+                <td>1300
+
+                </td>                
               </tr>
               <tr>               
                <td>Features</td>
-               <td>Torque, Power, Mileage, Make,Transmission,Fuel
+               <td>Engine alfunction Light, Number of Airbags,price,Anti-lock Braking System, Electronic Brakeforce Distribution, Electronic Stability Control
+                
                 </td>
              </tr>
              <tr>               
                <td>Target Verible</td>
-               <td>Price</td>
+               <td>Model
+              </td>
              </tr>
              <tr>               
                <td>Scaling and Encoding</td>
-               <td>Scaling & one hot encoding
-               </td>
+               <td>Scaling</td>
              </tr>
              <tr>                
                 <td>Algorithm </td>
                 <td>Random Forest
+
                 </td>
              </tr>
              <tr>                
                 <td>Accuracy of Model</td>
-                <td>90%</td>
+                <td>60%</td>
              </tr> 
             </table>
 
@@ -61,9 +65,8 @@ Price Dataset
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias saepe expedita in voluptatum consequunt</p>
             <div class="btn1"><span>Select Graph</span></div>
             <div class="options">
-              <li onclick="getChart(this)">1D (Linear)</li>
-              <li onclick="getChart(this)">Scatter</li>
               <li onclick="getChart(this)">2D (Planar)</li>
+              <li onclick="getChart(this)">1D (Linear)</li>
               <li onclick="getChart(this)">3D (Volumetric)</li>
               <li onclick="getChart(this)">Temporal</li>
               <li onclick="getChart(this)">Multidimensional</li>
@@ -85,9 +88,8 @@ Price Dataset
 {% block script %}
 <script>
   var img_arr={
-               '1D (Linear)':'bar.png',
-               'Scatter':'scatter1.PNG',
-               '2D (Planar)':'Scatter2.png',
+               '1D (Linear)':'1.png',
+               '2D (Planar)':'2d.png',
                '3D (Volumetric)':'',
                'Temporal':'',
                'Multidimensional':'',
@@ -105,7 +107,7 @@ Price Dataset
   {
       span.innerHTML=graph.innerText;
       option.classList.toggle("active")
-      image.src="../static/image/dataset1/"+img_arr[graph.innerText];
+      image.src="../static/image/dataset4/"+img_arr[graph.innerText];
   }
   Button.addEventListener('click', function (){
     option.classList.toggle("active")

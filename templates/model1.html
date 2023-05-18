@@ -18,7 +18,8 @@ Best Model
             <h3>{% if Model %} Your Dream Model{% else %} Find {% endif %}</h3>
             <h1> {% if Model %} {{Model}} {% else %} Best Model{% endif %}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
-            <img src="../static/image/car sell.png" alt="sell price image">
+            {% if Model == 'Ertiga' %}<img src="../static/image/ertiga.webp" alt="sell price image"> {% else %}
+            <img src="../static/image/car sell.png" alt="sell price image">{% endif %}
         </div>
 
         <div class="selling_form" style="margin-bottom: 50px;">
