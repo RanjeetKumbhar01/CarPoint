@@ -59,7 +59,11 @@ Price Dataset
           <div class="select-section">
             <h1>Data visualization</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias saepe expedita in voluptatum consequunt</p>
+<<<<<<< HEAD
             <div class="btn1"><span>Select Graph</span></div>
+=======
+            <div class="btn1"><span>Select Graph Type</span></div>
+>>>>>>> 916abbe530931833fba6cfa0b375348d117a4f99
             <div class="options">
               <li onclick="getChart(this)">1D (Linear)</li>
               <li onclick="getChart(this)">Scatter</li>
@@ -100,6 +104,8 @@ Price Dataset
   var span=Button.querySelector('span')
   var option=document.querySelector(".options")
   var image = document.querySelector('img')
+<<<<<<< HEAD
+=======
 
   function getChart(graph)
   {
@@ -112,6 +118,18 @@ Price Dataset
   })
 
 </script>
+>>>>>>> 916abbe530931833fba6cfa0b375348d117a4f99
 
+  function getChart(graph)
+  {
+      span.innerHTML=graph.innerText;
+      option.classList.toggle("active")
+      image.src="../static/image/dataset1/"+img_arr[graph.innerText];
+  }
+  Button.addEventListener('click', function (){
+    option.classList.toggle("active")
+  })
+
+</script>
 
 {% endblock %}
