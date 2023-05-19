@@ -329,5 +329,7 @@ header.link_color_1 .navbar a {
 }
 .model-heading p{
     color: var(--main-color);
+    width:40%;
+    text-align: center;
 }
 

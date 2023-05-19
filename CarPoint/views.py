@@ -186,8 +186,7 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
     t_fuel = get_label(df, 'fuel', fuel_type)
     t_type = get_label(df, 'type', cartype)
 
-    # model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
-    model = pickle.load(open('Models\\new resell\\latest_ABR_reg.pkl', 'rb'))
+    model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
     scaler = pickle.load(
         open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
     labelencoder = pickle.load(
@@ -236,6 +235,8 @@ def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odomete
         formatted_number = formatted_number[:-3]
         return formatted_number
 
+# @ajay
+
 
 def sellingPrice(request):
     if request.method == 'POST':
@@ -243,7 +244,7 @@ def sellingPrice(request):
         car_model = request.POST.get('Model')
         cartype = request.POST.get('Type')
         year = int((request.POST.get('Year')).split(
-            '-')[0])  
+            '-')[0])  # do int parsing here
         fuel_type = request.POST.get('Fuel')
         car_condition = request.POST.get('Condition')
         odometer = int(request.POST.get('Odometer')) 
@@ -563,30 +564,32 @@ def thiredModel(request):
                    }
         return render(request, 'model3.html', context)
     return render(request, 'model3.html')
-
+    
 
 def dataset1(request):
-    return HttpResponse("It Is dataset 1")
+    return render(request, 'dataset1.html')
 
 
 def dataset2(request):
-    return HttpResponse("It Is dataset 2")
+    return render(request, 'dataset2.html')
 
 
 def dataset3(request):
-    return HttpResponse("It Is dataset 3")
+    return render(request, 'dataset3.html')
 
 
 def dataset4(request):
-    return HttpResponse("It Is dataset 4")
+    return render(request, 'dataset4.html')
 
 
 def dataset5(request):
-    return HttpResponse("It Is dataset 5")
+    return render(request, 'dataset5.html')
+
+
 
 
 def discover(requet):
-    return HttpResponse("Discover")
+    return HttpResponse("<h1> We will Back </h1><br><h4>Feature is under construction</h4>")
 
 
 def aboutUs(request):
