@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% block style %}
+{% load static %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     
+<link rel="stylesheet" type="text/css" href="{% static 'form_css/model1.css' %}"/>
+{% endblock %}
+{% block title %}
+Best Secure Model
+{% endblock %}
+
+{% block body %}
+
+<section class="selling_Page_container">
+    <div class="page_container" style="padding-top: 30px;">
+        <div class="hero_section">
+            <h3>{% if Model %} Your Dreem Model{% else %} Find {% endif %}</h3>
+            <h1> {% if Model %} {{Model}} {% else %} Best Secure Model{% endif %}</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto quibusdam rem </p>
+            <img src="../static/image/car sell.png" alt="sell price image">
+        </div>
+
+        <div class="selling_form" style="padding-top: 20px; padding-bottom: 20px;">
+            <form class="sell_form_container" action="" method="post" >
+                {% csrf_token %}
+
+                 <!-- Price Range -->
+                 <div class="form_fields">
+                    <p>Price Range</p>
+                     <input type="text" value="{{Price}}" id="Price" name="Price" placeholder="Price Range" > 
+                    <!--<i  id='icon' class='bx bx-chevron-down'></i>
+                    <div class="Price_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                       -->
+                </div>
+                <!-- airBag -->
+                <div class="form_fields">
+                    <p>Number Of Air Bags</p>
+                    <input type="text" value="{{airBag}}" id="airBag" name="airBag" placeholder="Number Of Air Bags"autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <i  id='iconCon' class='bx bx-chevron-down'></i>
+                    <div class="Seat_suggection">
+                        <ul >                       
+                        </ul>
+                    </div>                  
+                </div>
+
+                  <!-- Engine_Malfunction_Light -->
+                  <div class="form_fields">
+                    <p>Engine Malfunction Light</p>
+                    <input type="text" id="Engine" value="{{Engine}}"  name="Engine" placeholder="Yes or No" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
+                    <div class="Fuel_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                     
+                </div>
+
+                <!-- Anti-lock Braking System -->
+                <div class="form_fields">
+                    <p>Anti-lock Braking System</p>
+                    <input type="text" value="{{ABC}}" id="ABC" name="ABC" placeholder="Yes or No" autocomplete="off" style="caret-color: transparent;" onkeydown="return false"> 
+                    <div class="Type_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>   
+                </div>              
+                 
+
+                  <!-- Electronic Brakeforce Distribution -->
+                  <div class="form_fields">
+                    <p>Electronic Brakeforce Distribution</p>
+                    <input type="text" value="{{EBD}}" name="EBD" id="EBD" placeholder="Yes or NO" autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <div class="Make_suggection">
+                        <ul>                           
+                        </ul>
+                    </div>                   
+                </div>
+
+                  <!-- Electronic Stability Control -->
+                  <div class="form_fields">
+                    <p>Electronic Stability Control</p>
+                    <input type="text" value="{{ESC}}" name="ESC" id="ESC" placeholder="Yes or NO" autocomplete="off" style="caret-color: transparent;" onkeydown="return false">   
+                    <div class="esc_suggection">
+                        <ul> 
+                                                  
+                        </ul>
+                    </div>                   
+                </div>                                     
+                    
+                      
+             
+               
+               <div class="form_fields">   
+                    <button type="submit">Submit</button>   
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<!-- script for airBag -->
+<script>
+    
+    var  list_of_Seat=[ 1,2,  3,  4,  6,  9,  8,  7, 10,  ];
+    var icon_flag1=0;
+    var SeatInputBox=document.getElementById('airBag');
+    var SeatSuggection=document.querySelector('.Seat_suggection');
+    var SeatSuggectionList=SeatSuggection.querySelector('ul')
+    var iconCon=document.getElementById('iconCon');
+
+    function updateSeat(selected_Seat)
+  {
+     document.getElementById('airBag').value=selected_Seat.innerText;
+     SeatSuggection.classList.remove('active')
+     iconCon.style.transform="rotate(0deg)";
+     icon_fla1g=0;
+  }
+
+
+    SeatInputBox.addEventListener('click',() =>{
+                 SeatSuggection.classList.toggle('active')
+                 if(icon_flag1==1)
+                   {iconCon.style.transform="rotate(0deg)";
+                     icon_flag1=0;
+                   }
+                else
+                 {icon_flag1=1;
+                       iconCon.style.transform="rotate(-180deg)";}
+                       SeatSuggectionList.innerHTML=""
+                 arr=[];
+                 arr=list_of_Seat.forEach(element => {
+                 li="<li onclick=updateSeat(this)>"+element+"</li>";
+                 SeatSuggectionList.insertAdjacentHTML("beforeend",li)            
+                 })
+
+
+     })
+
+ 
+    
+ </script>
+
+
+<!-- script for Price Type -->
+<!-- <script>
+    
+    var  list_of_Price=['1 Lack to 5 Lack','5 Lack to 10 Lack','10 Lack to 20 Lack','20 Lack to 30 Lack','30 Lack to 40 Lack','40 Lack to 50 Lack','1CR to 3Cr'];
+    var icon_flag=0;
+ 
+  var PriceInputBox=document.getElementById('Price');
+  var PriceSuggection=document.querySelector('.Price_suggection');
+  var PriceSuggectionList=PriceSuggection.querySelector('ul')
+  var icon=document.getElementById('icon');
+ 
+  function updatePrice(selected_Fuel)
+  {
+     document.getElementById('Price').value=selected_Fuel.innerText;
+     PriceSuggection.classList.remove('active')
+     icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+  }
+ 
+ 
+
+ 
+  PriceInputBox.addEventListener('click',() =>{
+    PriceSuggection.classList.toggle('active')
+    if(icon_flag==1)
+    {icon.style.transform="rotate(0deg)";
+     icon_flag=0;
+     }
+    else
+      {icon_flag=1;
+        icon.style.transform="rotate(-180deg)";}
+    PriceSuggectionList.innerHTML=""
+     arr=[];
+     arr=list_of_Price.forEach(element => {
+     li="<li onclick=updatePrice(this)>"+element+"</li>";
+     PriceSuggectionList.insertAdjacentHTML("beforeend",li)            
+     })
+ })
+ 
+ </script> -->
+
+<!-- script for ABC -->
+<script>
+    
+   var  list_of_Type=['Yes', 'No' ];
+
+ var typeInputBox=document.getElementById('ABC');
+ var typeSuggection=document.querySelector('.Type_suggection');
+ var typeSuggectionList=typeSuggection.querySelector('ul')
+
+
+ function updateType(selected_Fuel)
+ {
+    document.getElementById('ABC').value=selected_Fuel.innerText;
+    typeSuggection.classList.remove('active')
+ }
+
+
+ 
+
+ typeInputBox.addEventListener('click',() =>{
+    typeSuggection.classList.toggle('active')
+    typeSuggectionList.innerHTML=""
+    arr=[];
+    arr=list_of_Type.forEach(element => {
+    li="<li onclick=updateType(this)>"+element+"</li>";
+    typeSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for the Engine -->
+<script>
+
+    
+   var  list_of_Fuel=['Yes', 'No'];
+
+ var FuelInputBox=document.getElementById('Engine');
+ var FuelSuggection=document.querySelector('.Fuel_suggection');
+ var FuelSuggectionList=FuelSuggection.querySelector('ul')
+
+
+ function updateFuel(selected_Fuel)
+ {
+    document.getElementById('Engine').value=selected_Fuel.innerText;
+    FuelSuggection.classList.remove('active')
+ }
+
+FuelInputBox.addEventListener('click',() =>{
+    FuelSuggection.classList.toggle('active')
+    FuelSuggectionList.innerHTML=""
+    arr=[];
+    arr=list_of_Fuel.forEach(element => {
+    li="<li onclick=updateFuel(this)>"+element+"</li>";
+    FuelSuggectionList.insertAdjacentHTML("beforeend",li)            
+    })
+})
+
+</script>
+
+<!-- script for  the EBD -->
+<script>
+   
+
+   var  list_of_make=['Yes','NO'];
+
+       const make_inputBx = document.getElementById('EBD');
+       const make_suggection=document.querySelector('.Make_suggection');
+       const make_suggection_list=make_suggection.querySelector('ul');
+       make_suggection.classList.remove('active');
+
+   
+    
+
+
+        function showSuggection(make){
+            make_inputBx.value=make.innerText;
+            make_suggection.classList.remove('active');
+        }
+
+                
+        // FuelSuggection.classList.toggle('active');
+    
+
+       make_inputBx.addEventListener('click',() => {
+        
+         make_suggection.classList.toggle('active');
+         make_suggection_list.innerHTML=""
+         arr=[];
+         arr=list_of_make.forEach(element => {
+            li="<li onclick=showSuggection(this)>"+element+"</li>";
+            make_suggection_list.insertAdjacentHTML("beforeend",li)            
+         });
+        //  console.log(arr);
+
+       })
+    
+      
+
+</script>
+
+
+<!-- script for  the ESC -->
+<script>
+   
+
+    var  list_of_ESC=['Yes','NO'];
+ 
+        const ESC_inputBx = document.getElementById('ESC');
+        const ESC_suggection=document.querySelector('.esc_suggection');
+        const ESC_suggection_list=ESC_suggection.querySelector('ul');
+        ESC_suggection.classList.remove('active');
+ 
+    
+     
+ 
+ 
+         function showESC(selected){
+             document.getElementById('ESC').value=selected.innerText;
+            ESC_suggection.classList.remove('active');
+         }
+ 
+                 
+         // FuelSuggection.classList.toggle('active');
+     
+ 
+         ESC_inputBx.addEventListener('click',() => {
+         
+            ESC_suggection.classList.toggle('active');
+            ESC_suggection_list.innerHTML=""
+          arr=[];
+          arr=list_of_ESC.forEach(element => {
+             li="<li onclick=showESC(this)>"+element+"</li>";
+             ESC_suggection_list.insertAdjacentHTML("beforeend",li)            
+          });
+         //  console.log(arr);
+ 
+        })
+     
+       
+ 
+ </script>
+
+
+
+
+
+
+
+{% endblock %}
