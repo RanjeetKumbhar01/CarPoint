@@ -6,7 +6,8 @@ import numpy as np
 import locale  # to convert number to currency format
 import pandas as pd
 import tensorflow as tf
-
+import requests
+import json
 
 def index(request):
     return render(request, 'index.html')
@@ -177,104 +178,175 @@ def get_label(df, col, val):
 
 
 def modelresell(year, manufacturer, car_model, car_condition, fuel_type, odometer, cartype):
+    # try:
+        
+        df = pd.read_csv('Models\\new resell\\new_df_resell_required.csv')
 
-    df = pd.read_csv('Models\\new resell\\new_df_resell_required.csv')
+        t_make = get_label(df, 'manufacturer', manufacturer)
+        t_model = get_label(df, 'model', car_model)
+        t_condition = get_label(df, 'condition', car_condition)
+        t_fuel = get_label(df, 'fuel', fuel_type)
+        t_type = get_label(df, 'type', cartype)
 
-    t_make = get_label(df, 'manufacturer', manufacturer)
-    t_model = get_label(df, 'model', car_model)
-    t_condition = get_label(df, 'condition', car_condition)
-    t_fuel = get_label(df, 'fuel', fuel_type)
-    t_type = get_label(df, 'type', cartype)
+        # model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
+        scaler = pickle.load(
+            open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
+        # labelencoder = pickle.load(
+        #     open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
+        # Transform a category into a numerical value
 
-    model = pickle.load(open('Models\\new resell\\latest_xg_reg.pkl', 'rb'))
-    scaler = pickle.load(
-        open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
-    labelencoder = pickle.load(
-        open('Models\\new resell\\latest_standard_scaler_resell_price.pkl', 'rb'))
+        # D E B U G G I N G   A R E A
 
-    # Transform a category into a numerical value
+        print("\nBefore scaling:\n")
+        print("Shape ",year," and dtype: ",type(year)) #int 
+        print("Shape ",odometer," and dtype: ",type(odometer))#int 
+        print("Shape ",t_make," and dtype: ",type(t_make))
+        print("Shape ",t_model," and dype: ",type(t_model))
+        print("Shape ",t_condition," and dtype: ",type(t_condition))
+        print("Shape ",t_fuel," and dtype: ",type(t_fuel))
+        print("Shape ",t_type," and dtype: ",type(t_type))
+        # cat_cols = [manufacturer, car_model, fuel_type, cartype, car_condition]
 
-    # D E B U G G I N G   A R E A
+        # t_make = labelencoder.transform(np.array(t_make).reshape(-1, 1))
+        # t_model = labelencoder.transform(np.array(t_model).reshape(-1, 1))
+        # t_condition = labelencoder.transform(np.array(t_condition).reshape(-1, 1))
+        # t_fuel = labelencoder.transform(np.array(t_fuel).reshape(-1, 1))
+        # t_type = labelencoder.transform(np.array(t_type).reshape(-1, 1))
 
-    # print("\nBefore scaling:\n")
+        year = scaler.transform([[year]])
+        odometer = scaler.transform([[odometer]])
+        t_model = scaler.transform([t_model])
+        
+        # user_input = np.concatenate(
+        #     (t_make, t_model, t_fuel, t_type, t_condition, year, odometer))
+        
+        print("\nafter scaling:\n")
+        print("Shape ",year.shape," and dtype: ",type(year)) #int 
+        print("Shape ",odometer.shape," and dtype: ",type(odometer))#int 
+        print("Shape ",t_make.shape," and dtype: ",type(t_make))
+        print("Shape ",t_model.shape," and dype: ",type(t_model))
+        print("Shape ",t_condition.shape," and dtype: ",type(t_condition))
+        print("Shape ",t_fuel.shape," and dtype: ",type(t_fuel))
+        print("Shape ",t_type.shape," and dtype: ",type(t_type))
+        
+        col_list = [t_make, t_model, t_fuel, t_type, t_condition, year, odometer]
+        reshaped_arrays = [array.reshape((1,)).tolist() for array in col_list]
 
-    cat_cols = [manufacturer, car_model, fuel_type, cartype, car_condition]
+        # print(type(user_input))
+        # print(user_input)
+        # TEST
+        url = 'http://127.0.0.1:8001/resellpredict'  # Replace with your desired URL
+        headers = {'Content-Type': 'application/json'}  # Replace with your desired Content-Type
+        data =  {
+        "make":reshaped_arrays[0],
+        "model":reshaped_arrays[1],
+        "fuel":reshaped_arrays[2],
+        "type":reshaped_arrays[3],
+        "condition":reshaped_arrays[4],
+        "year":reshaped_arrays[5],
+        "odometer":reshaped_arrays[6]
+        }  # Replace with your desired request body data
+        # data =  {
+        # "make":t_make.tolist(),
+        # "model":t_model.tolist(),
+        # "fuel":t_fuel.tolist(),
+        # "type":t_type.tolist(),
+        # "condition":t_condition.tolist(),
+        # "year":year.tolist(),
+        # "odometer":odometer.tolist()
+        # }  # Replace with your desired request body data
+        # data =  {
+        # "make":-2.30762933,
+        # "model":-2.31514338,
+        # "fuel":-2.31514338,
+        # "type":-2.31514338,
+        # "condition":-2.31514338,
+        # "year":-2.31514338,
+        # "odometer":400
+        # }  # Replace with your desired request body data
+        print("\nafter data:\n")
+        print(data.values())
+        response = requests.post(url, headers=headers, json=data)
 
-    t_make = labelencoder.transform(np.array(t_make).reshape(-1, 1))
-    t_model = labelencoder.transform(np.array(t_model).reshape(-1, 1))
-    t_condition = labelencoder.transform(np.array(t_condition).reshape(-1, 1))
-    t_fuel = labelencoder.transform(np.array(t_fuel).reshape(-1, 1))
-    t_type = labelencoder.transform(np.array(t_type).reshape(-1, 1))
+        # Process the response as needed
+        if response.status_code == 200:
+            print('Request successful')
+            # print(response.text["pred_price"])
+            json_data = json.loads(response.content)
+            predicted_value = json_data.get('pred_price')
+            predicted_value = np.array([predicted_value])
+            print("predicted_value: ",predicted_value)
+            # print(key_value)
+        else:
+            print('Request failed with status code: ')
+            
+        # TEST
+        # # Use the trained model to make predictions on the scaled user input
+        # predicted_value = model.predict(user_input.reshape(1, -1))
+        # print("pred: ", predicted_value)
+        # print("pred log: ", np.power(2.71828, predicted_value))
+        # predicted_value = np.power(2.71828, predicted_value)
+        # print(type(predicted_value))
+        locale.setlocale(locale.LC_ALL, '')
 
-    year = scaler.transform([[year]])
-    odometer = scaler.transform([[odometer]])
-    t_model = scaler.transform(t_model)
+        # Define the currency symbol
+        dollar = '$'
 
-    user_input = np.concatenate(
-        (t_make, t_model, t_fuel, t_type, t_condition, year, odometer))
-    print("\nafter scaling:\n")
-    print(type(user_input))
-    print(user_input.shape)
+        # Use the locale.currency() function to format the predicted value as a dollar amount
+        formatted_number = locale.currency(
+            predicted_value[0].astype(int), symbol=dollar, grouping=True)
+        # formatted_number = locale.currency(
+        #     predicted_value[0], symbol=dollar, grouping=True)
 
-    # # Use the trained model to make predictions on the scaled user input
-    predicted_value = model.predict(user_input.reshape(1, -1))
-    print("pred: ", predicted_value)
-    print("pred log: ", np.power(2.71828, predicted_value))
-    predicted_value = np.power(2.71828, predicted_value)
-    locale.setlocale(locale.LC_ALL, '')
+        # Remove the '.00' from the end of the formatted string, if it exists
+        if formatted_number.endswith('.00'):
+            formatted_number = formatted_number[:-3]
+            return formatted_number
 
-    # Define the currency symbol
-    dollar = '$'
-
-    # Use the locale.currency() function to format the predicted value as a dollar amount
-    formatted_number = locale.currency(
-        predicted_value[0].astype(int), symbol=dollar, grouping=True)
-
-    # Remove the '.00' from the end of the formatted string, if it exists
-    if formatted_number.endswith('.00'):
-        formatted_number = formatted_number[:-3]
-        return formatted_number
-
-# @ajay
-
+    # except Exception as e:
+    #     print("Error in ReSell: ",e)
+        
 
 def sellingPrice(request):
-    if request.method == 'POST':
-        manufacturer = request.POST.get('Manufacturer')
-        car_model = request.POST.get('Model')
-        cartype = request.POST.get('Type')
-        year = int((request.POST.get('Year')).split(
-            '-')[0])  # do int parsing here
-        fuel_type = request.POST.get('Fuel')
-        car_condition = request.POST.get('Condition')
-        odometer = int(request.POST.get('Odometer')) 
-        price = modelresell(int(year), manufacturer, car_model,
-                            car_condition.lower(), fuel_type, int(odometer), cartype)
+    # try:
+        if request.method == 'POST':
+            manufacturer = request.POST.get('Manufacturer')
+            car_model = request.POST.get('Model')
+            cartype = request.POST.get('Type')
+            year = int((request.POST.get('Year')).split('-')[0])  # do int parsing here
+            fuel_type = request.POST.get('Fuel')
+            car_condition = request.POST.get('Condition')
+            odometer = int(request.POST.get('Odometer')) 
+            price = modelresell(int(year), manufacturer, car_model,
+                                car_condition.lower(), fuel_type, int(odometer), cartype)
 
-        context = {'Manufacturer': manufacturer,
-                   'Model': car_model,
-                   'Type': cartype,
-                   #    'Year': year,
-                   'Year': request.POST.get('Year'),
-                   "Fuel": fuel_type,
-                   'Condition': car_condition,
-                   "Odometer": odometer,
-                   "Price": "$ "+(price).split(' ')[1]}
+            context = {'Manufacturer': manufacturer,
+                    'Model': car_model,
+                    'Type': cartype,
+                    #    'Year': year,
+                    'Year': request.POST.get('Year'),
+                    "Fuel": fuel_type,
+                    'Condition': car_condition,
+                    "Odometer": odometer,
+                    "Price": "$ "+(price).split(' ')[1]}
 
-        return render(request, 'sell.html', context)
+            return render(request, 'sell.html', context)
 
-        # return HttpResponse(Year)
-    elif request.method == 'GET':
-        context = {'Manufacturer': "",
-                   'Model': "",
-                   'Type': "",
-                   'Year': "",
-                   "Fuel": "",
-                   'Condition': "",
-                   "Odometer": ""}
-        return render(request, 'sell.html', context)
+            # return HttpResponse(Year)
+        elif request.method == 'GET':
+            context = {'Manufacturer': "",
+                    'Model': "",
+                    'Type': "",
+                    'Year': "",
+                    "Fuel": "",
+                    'Condition': "",
+                    "Odometer": ""}
+            return render(request, 'sell.html', context)
+        return render(request, 'sell.html')
 
-    return render(request, 'sell.html')
+    # except Exception as e:
+    #     print("Error in function sellingPrice: ",e)
+        
 
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
